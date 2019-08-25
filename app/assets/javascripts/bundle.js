@@ -127,23 +127,29 @@ var receiveErrors = function receiveErrors(errors) {
   };
 };
 var login = function login(user) {
-  return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
-    return dispatch(receiveCurrentUser(user));
-  }, function (errors) {
-    return dispatch(receiveErrors(errors));
-  });
+  return function (dispatch) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["login"](user).then(function (user) {
+      return dispatch(receiveCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors));
+    });
+  };
 };
 var logout = function logout() {
-  return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
-    return dispatch(logoutCurrentUser());
-  });
+  return function (dispatch) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function () {
+      return dispatch(logoutCurrentUser());
+    });
+  };
 };
 var signup = function signup(user) {
-  return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
-    return dispatch(receiveCurrentUser(user));
-  }, function (errors) {
-    return dispatch(receiveErrors(errors));
-  });
+  return function (dispatch) {
+    return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["signup"](user).then(function (user) {
+      return dispatch(receiveCurrentUser(user));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors));
+    });
+  };
 };
 
 /***/ }),
