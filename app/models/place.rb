@@ -1,5 +1,5 @@
 class Place < ApplicationRecord
-    validates :name, :street, :street, :city, presence: true
+    validates :name, :location, :hours, presence: true
 
     has_many :reviews
 end
