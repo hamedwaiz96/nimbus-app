@@ -4,6 +4,8 @@ class User < ApplicationRecord
     validates :password_digest, :session_token, presence: true
     validates :password, length: {minimum: 6}, allow_nil: true
 
+    has_many :reviews
+
     after_initialize :ensure_session_token
 
     def self.find_by_credentials(username, password)
