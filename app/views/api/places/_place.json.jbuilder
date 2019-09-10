@@ -1,0 +1,1 @@
+json.extract! place, :id, :name, :photo, :location, :hours, :average_rating

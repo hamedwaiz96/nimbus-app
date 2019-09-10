@@ -86,6 +86,88 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/place_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/place_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_PLACES, RECEIVE_PLACE, receivePlaces, receivePlace, fetchPlaces, fetchPlace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PLACES", function() { return RECEIVE_PLACES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PLACE", function() { return RECEIVE_PLACE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePlaces", function() { return receivePlaces; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePlace", function() { return receivePlace; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPlaces", function() { return fetchPlaces; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPlace", function() { return fetchPlace; });
+/* harmony import */ var _util_place_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/place_api_util */ "./frontend/util/place_api_util.js");
+
+var RECEIVE_PLACES = 'RECEIVE_PLACES';
+var RECEIVE_PLACE = 'RECEIVE_PLACE';
+var receivePlaces = function receivePlaces(places) {
+  return {
+    type: RECEIVE_PLACES,
+    places: places
+  };
+};
+var receivePlace = function receivePlace(_ref) {
+  var place = _ref.place,
+      reviews = _ref.reviews;
+  return {
+    type: RECEIVE_PLACE,
+    place: place,
+    reviews: reviews
+  };
+};
+var fetchPlaces = function fetchPlaces() {
+  return function (dispatch) {
+    return _util_place_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllPlaces"]().then(function (places) {
+      return dispatch(receivePlaces(places));
+    });
+  };
+};
+var fetchPlace = function fetchPlace(id) {
+  return function (dispatch) {
+    return _util_place_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPlace"](id).then(function (whole) {
+      return dispatch(receivePlace(whole));
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./frontend/actions/review_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/review_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_REVIEW, receiveReview, createReview */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_REVIEW", function() { return RECEIVE_REVIEW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveReview", function() { return receiveReview; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
+/* harmony import */ var _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/review_api_util */ "./frontend/util/review_api_util.js");
+
+var RECEIVE_REVIEW = 'RECEIVE_REVIEW';
+var receiveReview = function receiveReview(review) {
+  return {
+    type: RECEIVE_REVIEW,
+    review: review
+  };
+};
+var createReview = function createReview(place_id, review) {
+  return function (dispatch) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReviewForPlace"](place_id, review).then(function (review) {
+      return dispatch(receiveReview(review));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -581,10 +663,16 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _place_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./place_reducer */ "./frontend/reducers/place_reducer.js");
+/* harmony import */ var _review_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./review_reducer */ "./frontend/reducers/review_reducer.js");
+
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  places: _place_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
+  reviews: _review_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -607,6 +695,83 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/place_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/place_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_place_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/place_actions */ "./frontend/actions/place_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var placeReducer = function placeReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_place_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PLACES"]:
+      return action.places;
+
+    case _actions_place_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PLACE"]:
+      var new_state = _defineProperty({}, action.place.id, action.place);
+
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, new_state);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (placeReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/review_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/review_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/place_actions */ "./frontend/actions/place_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var reviewReducer = function reviewReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_review_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_REVIEW"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.review);
+
+    case _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PLACE"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.reviews);
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (reviewReducer);
 
 /***/ }),
 
@@ -771,6 +936,57 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/place_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/place_api_util.js ***!
+  \*****************************************/
+/*! exports provided: fetchAllPlaces, fetchPlace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPlaces", function() { return fetchAllPlaces; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPlace", function() { return fetchPlace; });
+var fetchAllPlaces = function fetchAllPlaces(filter) {
+  return $.ajax({
+    url: 'api/places',
+    method: 'GET',
+    data: {
+      filter: filter
+    }
+  });
+};
+var fetchPlace = function fetchPlace(id) {
+  return $.ajax({
+    url: "api/places/".concat(id),
+    method: 'GET'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/review_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/review_api_util.js ***!
+  \******************************************/
+/*! exports provided: createReviewForPlace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReviewForPlace", function() { return createReviewForPlace; });
+var createReviewForPlace = function createReviewForPlace(review) {
+  return $.ajax({
+    url: "api/reviews",
+    method: 'POST',
+    data: {
+      review: review
+    }
+  });
+};
 
 /***/ }),
 
