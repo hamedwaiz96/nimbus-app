@@ -2,14 +2,20 @@ class Place < ApplicationRecord
     validates :name, :location, :hours, presence: true
 
     has_many :reviews
+    has_many :taggings, dependent: :destroy
+    has_many :tags, through: :taggings
 
     def self.handle_filters(filters)
         places = Place.all
         filters.each do |filter, value|
-            if filter === 'search'
-                places = places.where('lower(name) LIKE ?%', value.lower())
+            if value === "" || filter === "checked"
+                next
+            elsif filter === 'search'
+                places = places.where('lower(name) LIKE ?', value.downcase + '%')
             elsif filter === 'tags' && !(value.empty?)
-                places = places.joins(:taggings).where('taggings.tag_id IN ?', value)
+                value.each do |tag|
+                    places = places.joins(:taggings).where('taggings.tag_id IN (?)', tag)
+                end
             end
         end
         return places

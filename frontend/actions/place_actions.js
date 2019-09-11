@@ -14,8 +14,8 @@ export const receivePlace = ({place, reviews}) => ({
     reviews
 });
 
-export const fetchPlaces = () => dispatch => (
-    APIUtil.fetchAllPlaces().then((places) => dispatch(receivePlaces(places)))
+export const fetchPlaces = (filter) => dispatch => (
+    APIUtil.fetchAllPlaces(filter).then((places) => dispatch(receivePlaces(places)))
 );
 
 export const fetchPlace = (id) => dispatch => (
