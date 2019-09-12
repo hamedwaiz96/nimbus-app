@@ -12,8 +12,14 @@ class Place < ApplicationRecord
                 next
             elsif filter === 'search'
                 places = places.where('lower(name) LIKE ?', value.downcase + '%')
+            elsif filter === 'location' && !(value.empty?)
+                places = places.where('location IN (?)', value)
             elsif filter === 'tags' && !(value.empty?)
-                places = places.where('id IN (?)', self.find_common_places(value))
+                places = places.joins(:taggings).where('taggings.tag_id IN (?)', value)
+            elsif filter === 'price' && !(value.empty?)
+                places = places.where('id IN (?)', self.find_prices(places, value))
+            elsif filter === 'rating' && !(value.empty?)
+                places = places.where('id IN (?)', self.find_ratings(places, value))
             end
         end
         return places
@@ -27,22 +33,23 @@ class Place < ApplicationRecord
         reviews.average(:price_rating).to_f.round(2)
     end
 
-    def self.find_common_places(tags)
-        places = []
-        tag_hash = {}
-        results = Tagging.where('taggings.tag_id IN (?)', tags)
-        Place.all.each do |place|
-            places.push(place['id']) 
+    def self.find_prices(places, prices)
+        new_places = []
+        places.each do |place|
+            if prices.include?(place.average_price.round().to_s) 
+                new_places.push(place['id'])
+            end
         end
-        tags.each do |tag|
-            tag_hash[tag] = []
+        return new_places
+    end     
+
+    def self.find_ratings(places, ratings)
+        new_places = []
+        places.each do |place|
+            if ratings.include?(place.average_rating.round().to_s) 
+                new_places.push(place['id'])
+            end
         end
-        results.each do |result|
-            tag_hash[result['tag_id'].to_s].push(result['place_id'])
-        end
-        tag_hash.each do |key, values|
-            places = places & values
-        end
-        return places
+        return new_places
     end     
 end

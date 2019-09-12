@@ -629,13 +629,13 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Search).call(this, props));
     _this.state = {
       search: '',
-      rating: '',
-      price: '',
+      location: [],
+      rating: [],
+      price: [],
       tags: []
     };
     _this.updatesearch = _this.updatesearch.bind(_assertThisInitialized(_this));
-    _this.updatetag = _this.updatetag.bind(_assertThisInitialized(_this));
-    _this.updateradio = _this.updateradio.bind(_assertThisInitialized(_this));
+    _this.updatecheck = _this.updatecheck.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -656,36 +656,19 @@ function (_React$Component) {
       };
     }
   }, {
-    key: "updatetag",
-    value: function updatetag(category) {
+    key: "updatecheck",
+    value: function updatecheck(category, value) {
       var self = this;
       return function (e) {
         if (!e.target.checked) {
-          self.state.tags.splice(self.state.tags.indexOf(category), 1);
+          self.state[category].splice(self.state[category].indexOf(value), 1);
         } else {
-          self.state.tags.push(category);
+          self.state[category].push(value);
         }
 
         self.props.fetchPlaces(self.state).then(function () {
           self.setState(self.state);
         });
-      };
-    }
-  }, {
-    key: "updateradio",
-    value: function updateradio(type) {
-      var _this2 = this;
-
-      var self = this;
-      return function (e) {
-        if (_this2.state[type] === e.target.value) {
-          return;
-        } else {
-          _this2.state[type] = e.target.value;
-          self.props.fetchPlaces(_this2.state).then(function () {
-            self.setState(self.state);
-          });
-        }
       };
     }
   }, {
@@ -698,93 +681,115 @@ function (_React$Component) {
         placeholder: "Search",
         value: this.state.search,
         onChange: this.updatesearch('search')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+        className: "filter-and-index"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "filter"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filter By:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Category:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Temple",
-        onChange: this.updatetag("1")
+        onChange: this.updatecheck('tags', "1")
       }), " Temple ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Food",
-        onChange: this.updatetag("2")
+        onChange: this.updatecheck('tags', "2")
       }), " Food ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "TV",
-        onChange: this.updatetag("3")
+        onChange: this.updatecheck('tags', "3")
       }), " TV ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Nature",
-        onChange: this.updatetag("4")
+        onChange: this.updatecheck('tags', "4")
       }), " Nature ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Technical",
-        onChange: this.updatetag("5")
+        onChange: this.updatecheck('tags', "5")
       }), " Technical ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Park",
-        onChange: this.updatetag("6")
+        onChange: this.updatecheck('tags', "6")
       }), " Park ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "checkbox",
         name: "tag",
         value: "Historical",
-        onChange: this.updatetag("7")
-      }), " Historical ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Price:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        onChange: this.updatecheck('tags', "7")
+      }), " Historical ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Location:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        name: "location",
+        value: "Central City",
+        onChange: this.updatecheck('location', 'Central City')
+      }), " Central City ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        name: "location",
+        value: "East City",
+        onChange: this.updatecheck('location', 'East City')
+      }), " East City ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        name: "location",
+        value: "Papaya Island",
+        onChange: this.updatecheck('location', 'Papaya Island')
+      }), " Papaya Island ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
+        name: "location",
+        value: "West City",
+        onChange: this.updatecheck('location', 'West City')
+      }), " West City ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Price:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox",
         name: "price",
         value: "1",
-        onChange: this.updateradio('price')
+        onChange: this.updatecheck('price', '1')
       }), " 1 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "price",
         value: "2",
-        onChange: this.updateradio('price')
+        onChange: this.updatecheck('price', '2')
       }), " 2 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "price",
         value: "3",
-        onChange: this.updateradio('price')
+        onChange: this.updatecheck('price', '3')
       }), " 3 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "price",
         value: "4",
-        onChange: this.updateradio('price')
+        onChange: this.updatecheck('price', '4')
       }), " 4 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "price",
         value: "5",
-        onChange: this.updateradio('price')
+        onChange: this.updatecheck('price', '5')
       }), " 5 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Rating:", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "rating",
         value: "1",
-        onChange: this.updateradio('rating')
+        onChange: this.updatecheck('rating', '1')
       }), " 1 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "rating",
         value: "2",
-        onChange: this.updateradio('rating')
+        onChange: this.updatecheck('rating', '2')
       }), " 2 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "rating",
         value: "3",
-        onChange: this.updateradio('rating')
+        onChange: this.updatecheck('rating', '3')
       }), " 3 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "rating",
         value: "4",
-        onChange: this.updateradio('rating')
+        onChange: this.updatecheck('rating', '4')
       }), " 4 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "radio",
+        type: "checkbox",
         name: "rating",
         value: "5",
-        onChange: this.updateradio('rating')
+        onChange: this.updatecheck('rating', '5')
       }), " 5 ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_place_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
         places: this.props.places
       })));
@@ -34798,7 +34803,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
