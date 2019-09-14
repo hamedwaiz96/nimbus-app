@@ -11,7 +11,7 @@ class PlaceIndex extends React.Component {
             <ul className="place-items">
                 {this.props.places.map((place) => {
                     return (
-                        <PlaceItemIndex place={place} key={place.id} />
+                            <PlaceItemIndex place={place} key={place.id} />
                     )
                 })}
             </ul>

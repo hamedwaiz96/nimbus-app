@@ -1,1 +1,1 @@
-json.extract! place, :id, :name, :photo, :location, :hours, :average_rating
+json.extract! place, :id, :name, :photo, :location, :hours, :average_rating, :average_price, :review_count, :tags

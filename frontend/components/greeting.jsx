@@ -17,8 +17,8 @@ class Greeting extends React.Component {
         } else {
             return(
                 <nav className="logged-out">
-                    <Link to="/signup">Signup</Link>
-                    <Link to="/login">Login</Link>
+                    <Link className="signup" to="/signup">Signup</Link>
+                    <Link className="login" to="/login">Login</Link>
                 </nav>
             )
         }

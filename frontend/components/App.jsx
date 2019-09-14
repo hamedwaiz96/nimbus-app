@@ -8,10 +8,6 @@ import SearchContainer from './search_container';
 
 const App = () => (
     <div>
-        <header>
-            <h1>Nimbus</h1>
-            <GreetingContainer />
-        </header>
         <Route exact path="/" component={SearchContainer} />
         <AuthRoute path="/login" component={LoginFormContainer}/>
         <AuthRoute path="/signup" component={SignupFormContainer}/>

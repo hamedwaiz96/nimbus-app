@@ -17,9 +17,9 @@ class Place < ApplicationRecord
             elsif filter === 'tags' && !(value.empty?)
                 places = places.joins(:taggings).where('taggings.tag_id IN (?)', value)
             elsif filter === 'price' && !(value.empty?)
-                places = places.where('id IN (?)', self.find_prices(places, value))
+                places = places.where('places.id IN (?)', self.find_prices(places, value))
             elsif filter === 'rating' && !(value.empty?)
-                places = places.where('id IN (?)', self.find_ratings(places, value))
+                places = places.where('places.id IN (?)', self.find_ratings(places, value))
             end
         end
         return places
@@ -52,4 +52,21 @@ class Place < ApplicationRecord
         end
         return new_places
     end     
+
+    def review_count
+        reviews.count
+    end
+
+    def tags 
+        full_tag = ""
+        idx = -1
+        tags = Tag.joins(:taggings).where('taggings.place_id = ?', self.id)
+        tags_count = tags.count
+        tags.each do |tag|
+            idx += 1
+            comma = (idx === tags_count - 1) ? "" : ", "
+            full_tag = full_tag + tag.name + comma
+        end
+        return full_tag
+    end
 end

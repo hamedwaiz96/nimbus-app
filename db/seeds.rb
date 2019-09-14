@@ -45,67 +45,67 @@ ActiveRecord::Base.transaction do
     places = {
         '1' => {
             'name' => 'King Castle Tour',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/KingCastle.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/5/58/KingCastle.jpg/revision/latest?cb=20100415061052',
             'location' => 'Central City',
             'hours' => '7:00 AM - 5:00 PM'
         },
         '2' => {
             'name' => 'NBS News Station Tour',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/NBSNews.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/c/c8/Nbsafterkingpiccolo.png/revision/latest?cb=20110811042609',
             'location' => 'Central City',
             'hours' => '6:00 AM - 12:00 PM'
         },
         '3' => {
             'name' => 'Orin Temple',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/OrinTemple.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/e/e0/Orin_Temple.png/revision/latest/scale-to-width-down/180?cb=20120823090815',
             'location' => 'East City',
             'hours' => '8:00 AM - 6:00 PM'
         },
         '4' => {
             'name' => 'Bamboo Forest Exhibit',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/BambooForest.jpg',
+            'photo' => 'http://d17oknutsq9rw.cloudfront.net/wp-content/uploads/2016/05/09161338/15723813830_77dde6c570_h-800x450.jpg',
             'location' => 'East City',
             'hours' => '9:00 AM - 8:00 PM'
         },
         '5' => {
             'name' => 'Martial Arts Temple',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/MartialArtsTemple.jpg',
+            'photo' => 'https://static.planetminecraft.com/files/resource_media/screenshot/1432/dbzarena7974238.jpg',
             'location' => 'Papaya Island',
             'hours' => '7:00 AM - 8:00 PM'
         },
         '6' => {
             'name' => 'Delicious Saikan',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/DeliciousSaikan.jpg',
+            'photo' => 'https://cdnb.artstation.com/p/assets/images/images/010/011/507/large/manohar-soans-ichiraku-ramen-interior3.jpg?1522084867',
             'location' => 'Papaya Island',
             'hours' => '7:00 AM - 7:00 PM'
         },
         '7' => {
             'name' => 'Papaya Coffee Shop',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/PapayaCoffee.jpg',
+            'photo' => 'https://cdna.artstation.com/p/assets/images/images/012/900/714/large/amanda-ejiri-1.jpg?1537104580',
             'location' => 'Papaya Island',
             'hours' => '8:00 AM - 4:00 PM'
         },
         '8' => {
             'name' => 'Capsule Corporation',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/CapsuleCorp.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/3/32/Capsule_Corporation_DBZ_Ep_207_001.png/revision/latest?cb=20170827042823',
             'location' => 'West City',
             'hours' => '7:00 AM - 7:00 PM'
         },
         '9' => {
             'name' => 'Dream Land',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/DreamLand.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/a/a7/Dream_Land_DB_Ep_44_001.png/revision/latest?cb=20171105190533',
             'location' => 'West City',
             'hours' => '5:00 AM - 9:00 PM'
         },
         '10' => {
             'name' => 'ZZTV Tour',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/ZZTVTour.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/0/0b/ZTVHQ02.png/revision/latest?cb=20091202104939',
             'location' => 'West City',
             'hours' => '6:00 AM - 7:00 PM'
         },
         '11' => {
             'name' => 'Tongari Tower Tour',
-            'photo' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/TongariTower.jpg',
+            'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/b/bc/Korin_Tower_DBZ_Ep_217_001.png/revision/latest?cb=20170827070705',
             'location' => 'West City',
             'hours' => '9:00 AM - 5:00 PM'
         }
