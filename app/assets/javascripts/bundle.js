@@ -263,7 +263,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var App = function App() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    exact: true,
     path: "/",
     component: _search_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
@@ -577,6 +576,91 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/place_show.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/place_show.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var PlaceShow =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PlaceShow, _React$Component);
+
+  function PlaceShow(props) {
+    _classCallCheck(this, PlaceShow);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(PlaceShow).call(this, props));
+  }
+
+  _createClass(PlaceShow, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.id);
+    }
+  }]);
+
+  return PlaceShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PlaceShow);
+
+/***/ }),
+
+/***/ "./frontend/components/place_show_container.js":
+/*!*****************************************************!*\
+  !*** ./frontend/components/place_show_container.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _place_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./place_show */ "./frontend/components/place_show.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    id: parseInt(ownProps.match.params.id),
+    place: state.entities.places[parseInt(ownProps.match.params.id)]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_place_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/root.jsx":
 /*!**************************************!*\
   !*** ./frontend/components/root.jsx ***!
@@ -621,6 +705,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _place_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./place_index */ "./frontend/components/place_index.jsx");
 /* harmony import */ var _greeting_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./greeting_container */ "./frontend/components/greeting_container.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var _place_show_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./place_show_container */ "./frontend/components/place_show_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -638,6 +724,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -720,6 +808,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "full"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
@@ -735,130 +825,139 @@ function (_React$Component) {
         placeholder: "Search",
         value: this.state.search,
         onChange: this.updatesearch('search')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
-        className: "filter-and-index"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        onClick: this.toggleHide,
-        className: "filter-by"
-      }, "Add Filters"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "filter"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-inside hide"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Category:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Temple",
-        onChange: this.updatecheck('tags', "1")
-      }), " Temple"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Food",
-        onChange: this.updatecheck('tags', "2")
-      }), " Food"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "TV",
-        onChange: this.updatecheck('tags', "3")
-      }), " TV"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Nature",
-        onChange: this.updatecheck('tags', "4")
-      }), " Nature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Technical",
-        onChange: this.updatecheck('tags', "5")
-      }), " Technical"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Park",
-        onChange: this.updatecheck('tags', "6")
-      }), " Park"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "tag",
-        value: "Historical",
-        onChange: this.updatecheck('tags', "7")
-      }), " Historical")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Location:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "location",
-        value: "Central City",
-        onChange: this.updatecheck('location', 'Central City')
-      }), " Central City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "location",
-        value: "East City",
-        onChange: this.updatecheck('location', 'East City')
-      }), " East City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "location",
-        value: "Papaya Island",
-        onChange: this.updatecheck('location', 'Papaya Island')
-      }), " Papaya Island"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "location",
-        value: "West City",
-        onChange: this.updatecheck('location', 'West City')
-      }), " West City")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "price",
-        value: "1",
-        onChange: this.updatecheck('price', '1')
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "price",
-        value: "2",
-        onChange: this.updatecheck('price', '2')
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "price",
-        value: "3",
-        onChange: this.updatecheck('price', '3')
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "price",
-        value: "4",
-        onChange: this.updatecheck('price', '4')
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "price",
-        value: "5",
-        onChange: this.updatecheck('price', '5')
-      }), " 5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "filter-block"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "rating",
-        value: "1",
-        onChange: this.updatecheck('rating', '1')
-      }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "rating",
-        value: "2",
-        onChange: this.updatecheck('rating', '2')
-      }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "rating",
-        value: "3",
-        onChange: this.updatecheck('rating', '3')
-      }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "rating",
-        value: "4",
-        onChange: this.updatecheck('rating', '4')
-      }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "checkbox",
-        name: "rating",
-        value: "5",
-        onChange: this.updatecheck('rating', '5')
-      }), " 5")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_place_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        places: this.props.places
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+        exact: true,
+        path: "/",
+        render: function render(props) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+            className: "filter-and-index"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+            onClick: _this3.toggleHide,
+            className: "filter-by"
+          }, "Add Filters"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+            className: "filter"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "filter-inside hide"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "filter-block"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Category:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Temple",
+            onChange: _this3.updatecheck('tags', "1")
+          }), " Temple"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Food",
+            onChange: _this3.updatecheck('tags', "2")
+          }), " Food"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "TV",
+            onChange: _this3.updatecheck('tags', "3")
+          }), " TV"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Nature",
+            onChange: _this3.updatecheck('tags', "4")
+          }), " Nature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Technical",
+            onChange: _this3.updatecheck('tags', "5")
+          }), " Technical"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Park",
+            onChange: _this3.updatecheck('tags', "6")
+          }), " Park"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "tag",
+            value: "Historical",
+            onChange: _this3.updatecheck('tags', "7")
+          }), " Historical")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "filter-block"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Location:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "location",
+            value: "Central City",
+            onChange: _this3.updatecheck('location', 'Central City')
+          }), " Central City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "location",
+            value: "East City",
+            onChange: _this3.updatecheck('location', 'East City')
+          }), " East City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "location",
+            value: "Papaya Island",
+            onChange: _this3.updatecheck('location', 'Papaya Island')
+          }), " Papaya Island"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "location",
+            value: "West City",
+            onChange: _this3.updatecheck('location', 'West City')
+          }), " West City")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "filter-block"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "price",
+            value: "1",
+            onChange: _this3.updatecheck('price', '1')
+          }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "price",
+            value: "2",
+            onChange: _this3.updatecheck('price', '2')
+          }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "price",
+            value: "3",
+            onChange: _this3.updatecheck('price', '3')
+          }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "price",
+            value: "4",
+            onChange: _this3.updatecheck('price', '4')
+          }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "price",
+            value: "5",
+            onChange: _this3.updatecheck('price', '5')
+          }), " 5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "filter-block"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "rating",
+            value: "1",
+            onChange: _this3.updatecheck('rating', '1')
+          }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "rating",
+            value: "2",
+            onChange: _this3.updatecheck('rating', '2')
+          }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "rating",
+            value: "3",
+            onChange: _this3.updatecheck('rating', '3')
+          }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "rating",
+            value: "4",
+            onChange: _this3.updatecheck('rating', '4')
+          }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+            type: "checkbox",
+            name: "rating",
+            value: "5",
+            onChange: _this3.updatecheck('rating', '5')
+          }), " 5")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_place_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            places: _this3.props.places
+          }));
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+        path: "/places/:id",
+        component: _place_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
       })));
     }
   }]);

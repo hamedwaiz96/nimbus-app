@@ -65,10 +65,10 @@ body {
      display: flex;
      border-bottom: 1px solid lightgrey;
      padding: 10px 0 10px 5px;
-     /* box-shadow: 3px 2px 2px grey; */
      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      text-decoration: none;
      border-radius: 5px;
+     background: white;
  }
 
  .place-item:hover {
@@ -122,9 +122,11 @@ body {
      justify-content: space-around;
      width: 100%;
      margin: auto;
-     background: #ffe2ff;
+     background: #f7c9c8;
      padding-bottom: 5px;
      border-radius: 5px 5px;
+     color: black;
+     box-shadow: 5px 5px 5px grey;
  }
 
  .filter-by {
@@ -133,8 +135,11 @@ body {
      border-top: none;
      font-family: 'Roboto', sans-serif;
      width: 100%;
-     background: #fff6ff;
+     background: #f7c9c8;
      border-radius: 5px 5px;
+     color: black;
+     box-shadow: 5px 5px 5px grey;
+     border-bottom: 1px solid pink;
  }
 
  .filter-by:hover {
