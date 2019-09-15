@@ -46,7 +46,7 @@ body {
     padding-bottom: 8px;
 }
 
- .filter-and-index {
+ .filter-and-index, .place-show {
      width: 50%;
      margin: auto;
      min-width: 550px;
@@ -271,5 +271,9 @@ body {
 }
 
 .review-user-photo {
+    border-radius: 5px;
+}
+
+.place-main-photo {
     border-radius: 5px;
 }

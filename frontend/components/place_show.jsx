@@ -1,5 +1,6 @@
 import React from 'react';
 import ReviewItemContainer from './review_item_container';
+import NimbusLoader from './nimbus_loader';
 import {withRouter} from 'react-router-dom';
 
 class PlaceShow extends React.Component {
@@ -16,10 +17,14 @@ class PlaceShow extends React.Component {
     render(){
         let show;
         if(this.state.isLoaded === true){
+            debugger;
             show = (
                 <div className="place-show">
+                    <ul className="place-photos">
+                        
+                    </ul>
                     <h1>{this.props.place.name}</h1>
-                    <img src={this.props.place.photo} alt="" />
+                    <img className="place-main-photo" src={this.props.place.photo} alt="" height="200" width="200"/>
                     <ul className="review-items">
                         {this.props.reviews.map((review) => {
                             return (
@@ -31,8 +36,9 @@ class PlaceShow extends React.Component {
             )
         } else {
             show = (
-                <div>Loading</div>
+                <NimbusLoader />
             )
+            
         }
         return(
             <div>

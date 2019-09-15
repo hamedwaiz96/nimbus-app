@@ -168,7 +168,7 @@ class Search extends React.Component {
                                     </div>
                                 </div>
                             </section>
-                            <PlaceIndex places={this.props.places} />
+                            <PlaceIndex places={this.props.places} loading={this.props.loading} />
                         </main>
                     )}/>
                     <Route path="/places/:id" component={PlaceShowContainer} />
