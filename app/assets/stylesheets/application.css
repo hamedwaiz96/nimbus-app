@@ -277,3 +277,16 @@ body {
 .place-main-photo {
     border-radius: 5px;
 }
+
+.place-photos {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0;
+}
+
+
+.place-photo-item {
+    border-radius: 5px;
+}

@@ -14,7 +14,6 @@ class PlaceIndex extends React.Component {
                 <NimbusLoader />
             )
         } else {
-            debugger;
             loading = (
                 <ul className="place-items">
                     {this.props.places.map((place) => {

@@ -4,7 +4,7 @@ import {fetchPlace} from '../actions/place_actions';
 import { getUsers, getReviews, getPhotos } from './selector';
 
 const mapStateToProps = (state, ownProps) => ({
-    state: state,
+    loading: state.ui.loading.detailLoading,
     id: parseInt(ownProps.match.params.id),
     place: state.entities.places[parseInt(ownProps.match.params.id)],
     authors: getUsers(state.entities.users),
