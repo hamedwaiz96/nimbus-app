@@ -4,6 +4,7 @@ class Place < ApplicationRecord
     has_many :reviews
     has_many :taggings, dependent: :destroy
     has_many :tags, through: :taggings
+    has_many :photos, dependent: :destroy
 
     def self.handle_filters(filters)
         places = Place.all

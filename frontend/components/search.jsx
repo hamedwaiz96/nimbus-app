@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaceIndex from './place_index';
 import GreetingContainer from './greeting_container'
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
 import PlaceShowContainer from './place_show_container';
 
@@ -15,8 +15,11 @@ class Search extends React.Component {
             price: [],
             tags: []
         }
-        this.updatecheck = this.updatecheck.bind(this)
-        this.updatesearch = this.updatesearch.bind(this)
+        this.updatecheck = this.updatecheck.bind(this);
+        this.updatesearch = this.updatesearch.bind(this);
+        this.updateblocksearch = this.updateblocksearch.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleregSubmit = this.handleregSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -59,16 +62,54 @@ class Search extends React.Component {
         }
     }
 
+    updateblocksearch(key){
+        const self = this;
+        return e => {
+            self.setState({[key]: e.target.value})
+        }
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        this.props.history.push("/")
+        this.props.fetchPlaces(this.state).then(() => {
+            this.setState(this.state);
+        })
+    }
+
+    handleregSubmit(e){
+        e.preventDefault();
+        this.props.fetchPlaces(this.state).then(() => {
+            this.setState(this.state);
+        })
+    }
+
     render(){
+        let search;
+        if (this.props.history.location.pathname != "/"){
+            search = (
+                <form onSubmit={this.handleSubmit} className="search-form">
+                    <input className="search-bar" type="text" placeholder="Search" value={this.state.search} onChange={this.updateblocksearch('search')} />
+                    <button className="fa fa-search"></button>
+                </form>
+            )
+        } else {
+            search = (
+                <form onSubmit={this.handleregSubmit} className="search-form">
+                    <input className="search-bar" type="text" placeholder="Search" value={this.state.search} onChange={this.updatesearch('search')} />
+                    <button className="fa fa-search"></button>
+                </form>
+            )
+        }
         return(
                 <div className="full">
-                    <header className="search">
-                        <div className="search-inside">
-                            <Link className="nimbus" to="/">Nimbus</Link>
-                            <input className="search-bar" type="text" placeholder="Search" value={this.state.search} onChange={this.updatesearch('search')} />
-                            <GreetingContainer />
-                        </div>
-                    </header>
+                <header className="search">
+                    <div className="search-inside">
+                        <Link className="nimbus" to="/">Nimbus</Link>
+                        {search}
+                        <GreetingContainer />
+                    </div>
+                </header>
                 <Switch>
                     <Route exact path="/" render={(props) => (
                         <main className="filter-and-index">
@@ -137,4 +178,4 @@ class Search extends React.Component {
     }
 }
 
-export default Search;
+export default withRouter(Search);

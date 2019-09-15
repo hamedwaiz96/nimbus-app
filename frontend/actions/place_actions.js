@@ -8,10 +8,12 @@ export const receivePlaces = places => ({
     places
 });
 
-export const receivePlace = ({place, reviews}) => ({
+export const receivePlace = ({place, reviews, authors, photos}) => ({
     type: RECEIVE_PLACE,
     place,
-    reviews
+    reviews,
+    authors,
+    photos
 });
 
 export const fetchPlaces = (filter) => dispatch => (

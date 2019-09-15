@@ -1,4 +1,5 @@
 import {RECEIVE_CURRENT_USER} from '../actions/session_actions';
+import {RECEIVE_PLACE} from '../actions/place_actions';
 import merge from 'lodash/merge';
 
 const usersReducer = (state={}, action) => {
@@ -8,6 +9,9 @@ const usersReducer = (state={}, action) => {
                 [action.currentUser.id]: action.currentUser
             };
             return merge({}, state, new_state);
+        case(RECEIVE_PLACE):
+            // return merge({}, state, action.authors)
+            return action.authors
         default:
             return state;
     }

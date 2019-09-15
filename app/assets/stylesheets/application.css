@@ -254,5 +254,22 @@ body {
 
  a {
   color: blue;
-  text-decoration: none; /* no underline */
+  text-decoration: none;
+}
+
+.search-form {
+    display: flex;
+}
+
+.review-items {
+    list-style: none;
+}
+
+.review-user-info {
+    font-size: 12px;
+
+}
+
+.review-user-photo {
+    border-radius: 5px;
 }

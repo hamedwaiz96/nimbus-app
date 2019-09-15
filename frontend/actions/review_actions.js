@@ -7,6 +7,6 @@ export const receiveReview = (review) => ({
     review
 });
 
-export const createReview = (place_id, review) => dispatch => (
-    APIUtil.createReviewForPlace(place_id, review).then((review) => dispatch(receiveReview(review)))
+export const createReview = (review) => dispatch => (
+    APIUtil.createReviewForPlace(review).then((review) => dispatch(receiveReview(review)))
 );

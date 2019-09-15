@@ -18,22 +18,22 @@ ActiveRecord::Base.transaction do
         '1' => {
             'username' => 'trunksofdafuture',
             'password' => 'bustercannon',
-            'image' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Users/Trunks.jpg'
+            'image' => 'https://lh3.googleusercontent.com/mSoCsh4-07g108to8TjpnDp9nr-hG9g9sZ_tsOlJeBcQPBmjd_rRICbM50McH9eUQ6HCMg=s85'
         },
         '2' => {
             'username' => 'secretsaiyaman',
             'password' => 'masenko',
-            'image' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Users/Gohan.jpg'
+            'image' => 'https://lh3.googleusercontent.com/vbji9EC4xvRcNh26hXNCbSZqrbuRGExqKrcg9Ifvm648MoPdxrx4_rv7ZJc47-_zVY0sCLw=s85'
         },
         '3' => {
             'username' => 'rage_man',
             'password' => 'sslegend',
-            'image' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Users/Broly.jpg'
+            'image' => 'https://lh3.googleusercontent.com/S0r3KwQjNpUuSKDZCK03gzN6v-9qMJ8vtsPEifgpw30L_gqjRjG5Tg8F6GAdx4iws9UgQg=s151'
         },
         '4' => {
             'username' => 'pride_man',
             'password' => 'finalflash',
-            'image' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Users/Vegeta.jpg'
+            'image' => 'https://lh3.googleusercontent.com/w3gKj0k5rxN4B7aMGnotQ_XfSSjnZ6wSg0Sy3V-6RtQtKIO1yazz61Lu7AAsndIKcyhJrg=s85'
         }
     }
 

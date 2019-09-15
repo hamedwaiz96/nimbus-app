@@ -4,9 +4,20 @@ class User < ApplicationRecord
     validates :password_digest, :session_token, presence: true
     validates :password, length: {minimum: 6}, allow_nil: true
 
-    has_many :reviews
+    has_many :reviews,
+        class_name: 'Review',
+        foreign_key: :author_id
+    has_many :photos
 
     after_initialize :ensure_session_token
+
+    def review_count
+        reviews.count
+    end
+
+    def photo_count
+        photos.count
+    end
 
     def self.find_by_credentials(username, password)
         user = User.find_by(:username => username)

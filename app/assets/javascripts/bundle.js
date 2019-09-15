@@ -86,6 +86,37 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/photo_actions.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/photo_actions.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_PHOTO, receivePhoto, createPhoto */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_PHOTO", function() { return RECEIVE_PHOTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePhoto", function() { return receivePhoto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPhoto", function() { return createPhoto; });
+/* harmony import */ var _util_photo_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/photo_api_util */ "./frontend/util/photo_api_util.js");
+
+var RECEIVE_PHOTO = 'RECEIVE_PHOTO';
+var receivePhoto = function receivePhoto(photo) {
+  return {
+    type: RECEIVE_PHOTO,
+    photo: photo
+  };
+};
+var createPhoto = function createPhoto(photo) {
+  return function (dispatch) {
+    return _util_photo_api_util__WEBPACK_IMPORTED_MODULE_0__["createPhotoForPlace"](photo).then(function (photo) {
+      return dispatch(receivePhoto(photo));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/place_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/place_actions.js ***!
@@ -113,11 +144,15 @@ var receivePlaces = function receivePlaces(places) {
 };
 var receivePlace = function receivePlace(_ref) {
   var place = _ref.place,
-      reviews = _ref.reviews;
+      reviews = _ref.reviews,
+      authors = _ref.authors,
+      photos = _ref.photos;
   return {
     type: RECEIVE_PLACE,
     place: place,
-    reviews: reviews
+    reviews: reviews,
+    authors: authors,
+    photos: photos
   };
 };
 var fetchPlaces = function fetchPlaces(filter) {
@@ -158,9 +193,9 @@ var receiveReview = function receiveReview(review) {
     review: review
   };
 };
-var createReview = function createReview(place_id, review) {
+var createReview = function createReview(review) {
   return function (dispatch) {
-    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReviewForPlace"](place_id, review).then(function (review) {
+    return _util_review_api_util__WEBPACK_IMPORTED_MODULE_0__["createReviewForPlace"](review).then(function (review) {
       return dispatch(receiveReview(review));
     });
   };
@@ -587,6 +622,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _review_item_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_item_container */ "./frontend/components/review_item_container.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -607,28 +644,63 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var PlaceShow =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(PlaceShow, _React$Component);
 
   function PlaceShow(props) {
+    var _this;
+
     _classCallCheck(this, PlaceShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PlaceShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PlaceShow).call(this, props));
+    _this.state = {
+      isLoaded: false
+    };
+
+    _this.props.fetchPlace(_this.props.id).then(function () {
+      _this.setState({
+        isLoaded: true
+      });
+    });
+
+    return _this;
   }
 
   _createClass(PlaceShow, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.id);
+      var show;
+
+      if (this.state.isLoaded === true) {
+        show = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "place-show"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.place.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.place.photo,
+          alt: ""
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+          className: "review-items"
+        }, this.props.reviews.map(function (review) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_item_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
+            review: review,
+            key: review.id
+          });
+        })));
+      } else {
+        show = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Loading");
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, show);
     }
   }]);
 
   return PlaceShow;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (PlaceShow);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(PlaceShow));
 
 /***/ }),
 
@@ -643,21 +715,145 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _place_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./place_show */ "./frontend/components/place_show.jsx");
+/* harmony import */ var _actions_place_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/place_actions */ "./frontend/actions/place_actions.js");
+/* harmony import */ var _selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./selector */ "./frontend/components/selector.js");
+
+
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
+    state: state,
     id: parseInt(ownProps.match.params.id),
-    place: state.entities.places[parseInt(ownProps.match.params.id)]
+    place: state.entities.places[parseInt(ownProps.match.params.id)],
+    authors: Object(_selector__WEBPACK_IMPORTED_MODULE_3__["getUsers"])(state.entities.users),
+    reviews: Object(_selector__WEBPACK_IMPORTED_MODULE_3__["getReviews"])(state.entities.reviews),
+    photos: Object(_selector__WEBPACK_IMPORTED_MODULE_3__["getPhotos"])(state.entities.photos)
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    fetchPlace: function fetchPlace(id) {
+      return dispatch(Object(_actions_place_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPlace"])(id));
+    }
+  };
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_place_show__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/review_item.jsx":
+/*!*********************************************!*\
+  !*** ./frontend/components/review_item.jsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var ReviewItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ReviewItem, _React$Component);
+
+  function ReviewItem(props) {
+    var _this;
+
+    _classCallCheck(this, ReviewItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ReviewItem).call(this, props));
+    _this.user_link = "/users/".concat(_this.props.author.id);
+    return _this;
+  }
+
+  _createClass(ReviewItem, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "review-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "review-user-photo",
+        src: this.props.author.image,
+        alt: this.props.author.username,
+        height: "50",
+        width: "50"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: this.user_link
+      }, this.props.author.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "review-user-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "fa fa-star review-count"
+      }, " ", this.props.author.review_count, " reviews"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "fa fa-camera photo-count "
+      }, this.props.author.photo_count, " photos")));
+    }
+  }]);
+
+  return ReviewItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (ReviewItem);
+
+/***/ }),
+
+/***/ "./frontend/components/review_item_container.js":
+/*!******************************************************!*\
+  !*** ./frontend/components/review_item_container.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _review_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./review_item */ "./frontend/components/review_item.jsx");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/review_actions */ "./frontend/actions/review_actions.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    author: state.entities.users[ownProps.review.author_id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createReview: function createReview(review) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__["createReview"])(review));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_review_item__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
@@ -709,6 +905,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _place_show_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./place_show_container */ "./frontend/components/place_show_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -752,6 +950,9 @@ function (_React$Component) {
     };
     _this.updatecheck = _this.updatecheck.bind(_assertThisInitialized(_this));
     _this.updatesearch = _this.updatesearch.bind(_assertThisInitialized(_this));
+    _this.updateblocksearch = _this.updateblocksearch.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleregSubmit = _this.handleregSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -806,9 +1007,68 @@ function (_React$Component) {
       };
     }
   }, {
+    key: "updateblocksearch",
+    value: function updateblocksearch(key) {
+      var self = this;
+      return function (e) {
+        self.setState(_defineProperty({}, key, e.target.value));
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      this.props.history.push("/");
+      this.props.fetchPlaces(this.state).then(function () {
+        _this3.setState(_this3.state);
+      });
+    }
+  }, {
+    key: "handleregSubmit",
+    value: function handleregSubmit(e) {
+      var _this4 = this;
+
+      e.preventDefault();
+      this.props.fetchPlaces(this.state).then(function () {
+        _this4.setState(_this4.state);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
+
+      var search;
+
+      if (this.props.history.location.pathname != "/") {
+        search = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.handleSubmit,
+          className: "search-form"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "search-bar",
+          type: "text",
+          placeholder: "Search",
+          value: this.state.search,
+          onChange: this.updateblocksearch('search')
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "fa fa-search"
+        }));
+      } else {
+        search = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+          onSubmit: this.handleregSubmit,
+          className: "search-form"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          className: "search-bar",
+          type: "text",
+          placeholder: "Search",
+          value: this.state.search,
+          onChange: this.updatesearch('search')
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "fa fa-search"
+        }));
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "full"
@@ -819,20 +1079,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         className: "nimbus",
         to: "/"
-      }, "Nimbus"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "search-bar",
-        type: "text",
-        placeholder: "Search",
-        value: this.state.search,
-        onChange: this.updatesearch('search')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+      }, "Nimbus"), search, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_greeting_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/",
         render: function render(props) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
             className: "filter-and-index"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-            onClick: _this3.toggleHide,
+            onClick: _this5.toggleHide,
             className: "filter-by"
           }, "Add Filters"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
             className: "filter"
@@ -844,115 +1098,115 @@ function (_React$Component) {
             type: "checkbox",
             name: "tag",
             value: "Temple",
-            onChange: _this3.updatecheck('tags', "1")
+            onChange: _this5.updatecheck('tags', "1")
           }), " Temple"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "Food",
-            onChange: _this3.updatecheck('tags', "2")
+            onChange: _this5.updatecheck('tags', "2")
           }), " Food"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "TV",
-            onChange: _this3.updatecheck('tags', "3")
+            onChange: _this5.updatecheck('tags', "3")
           }), " TV"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "Nature",
-            onChange: _this3.updatecheck('tags', "4")
+            onChange: _this5.updatecheck('tags', "4")
           }), " Nature"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "Technical",
-            onChange: _this3.updatecheck('tags', "5")
+            onChange: _this5.updatecheck('tags', "5")
           }), " Technical"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "Park",
-            onChange: _this3.updatecheck('tags', "6")
+            onChange: _this5.updatecheck('tags', "6")
           }), " Park"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "tag",
             value: "Historical",
-            onChange: _this3.updatecheck('tags', "7")
+            onChange: _this5.updatecheck('tags', "7")
           }), " Historical")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "filter-block"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Location:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "location",
             value: "Central City",
-            onChange: _this3.updatecheck('location', 'Central City')
+            onChange: _this5.updatecheck('location', 'Central City')
           }), " Central City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "location",
             value: "East City",
-            onChange: _this3.updatecheck('location', 'East City')
+            onChange: _this5.updatecheck('location', 'East City')
           }), " East City"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "location",
             value: "Papaya Island",
-            onChange: _this3.updatecheck('location', 'Papaya Island')
+            onChange: _this5.updatecheck('location', 'Papaya Island')
           }), " Papaya Island"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "location",
             value: "West City",
-            onChange: _this3.updatecheck('location', 'West City')
+            onChange: _this5.updatecheck('location', 'West City')
           }), " West City")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "filter-block"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Price:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "price",
             value: "1",
-            onChange: _this3.updatecheck('price', '1')
+            onChange: _this5.updatecheck('price', '1')
           }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "price",
             value: "2",
-            onChange: _this3.updatecheck('price', '2')
+            onChange: _this5.updatecheck('price', '2')
           }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "price",
             value: "3",
-            onChange: _this3.updatecheck('price', '3')
+            onChange: _this5.updatecheck('price', '3')
           }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "price",
             value: "4",
-            onChange: _this3.updatecheck('price', '4')
+            onChange: _this5.updatecheck('price', '4')
           }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "price",
             value: "5",
-            onChange: _this3.updatecheck('price', '5')
+            onChange: _this5.updatecheck('price', '5')
           }), " 5")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             className: "filter-block"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "rating",
             value: "1",
-            onChange: _this3.updatecheck('rating', '1')
+            onChange: _this5.updatecheck('rating', '1')
           }), " 1"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "rating",
             value: "2",
-            onChange: _this3.updatecheck('rating', '2')
+            onChange: _this5.updatecheck('rating', '2')
           }), " 2"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "rating",
             value: "3",
-            onChange: _this3.updatecheck('rating', '3')
+            onChange: _this5.updatecheck('rating', '3')
           }), " 3"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "rating",
             value: "4",
-            onChange: _this3.updatecheck('rating', '4')
+            onChange: _this5.updatecheck('rating', '4')
           }), " 4"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
             type: "checkbox",
             name: "rating",
             value: "5",
-            onChange: _this3.updatecheck('rating', '5')
+            onChange: _this5.updatecheck('rating', '5')
           }), " 5")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_place_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
-            places: _this3.props.places
+            places: _this5.props.places
           }));
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router__WEBPACK_IMPORTED_MODULE_4__["Route"], {
@@ -965,7 +1219,7 @@ function (_React$Component) {
   return Search;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Search);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["withRouter"])(Search));
 
 /***/ }),
 
@@ -1009,14 +1263,26 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!*****************************************!*\
   !*** ./frontend/components/selector.js ***!
   \*****************************************/
-/*! exports provided: getPlaces */
+/*! exports provided: getPlaces, getReviews, getUsers, getPhotos */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPlaces", function() { return getPlaces; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getReviews", function() { return getReviews; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getUsers", function() { return getUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPhotos", function() { return getPhotos; });
 var getPlaces = function getPlaces(places) {
   return Object.values(places);
+};
+var getReviews = function getReviews(reviews) {
+  return Object.values(reviews);
+};
+var getUsers = function getUsers(users) {
+  return Object.values(users);
+};
+var getPhotos = function getPhotos(photos) {
+  return Object.values(photos);
 };
 
 /***/ }),
@@ -1239,6 +1505,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
 /* harmony import */ var _place_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./place_reducer */ "./frontend/reducers/place_reducer.js");
 /* harmony import */ var _review_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./review_reducer */ "./frontend/reducers/review_reducer.js");
+/* harmony import */ var _photo_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./photo_reducer */ "./frontend/reducers/photo_reducer.js");
+
 
 
 
@@ -1246,7 +1514,8 @@ __webpack_require__.r(__webpack_exports__);
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   places: _place_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  reviews: _review_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  reviews: _review_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  photos: _photo_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1269,6 +1538,44 @@ var errorsReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   session: _session_errors_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (errorsReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/photo_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/photo_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_photo_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/photo_actions */ "./frontend/actions/photo_actions.js");
+/* harmony import */ var _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/place_actions */ "./frontend/actions/place_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var photoReducer = function photoReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actions_photo_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_PHOTO"]:
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.photo);
+
+    case _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PLACE"]:
+      // return merge({}, state, action.photos)
+      return action.photos;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (photoReducer);
 
 /***/ }),
 
@@ -1338,7 +1645,8 @@ var reviewReducer = function reviewReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.review);
 
     case _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PLACE"]:
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, action.reviews);
+      // return merge({}, state, action.reviews)
+      return action.reviews;
 
     default:
       return state;
@@ -1459,9 +1767,11 @@ var sessionReducer = function sessionReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
-/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/place_actions */ "./frontend/actions/place_actions.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash/merge */ "./node_modules/lodash/merge.js");
+/* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_merge__WEBPACK_IMPORTED_MODULE_2__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -1474,7 +1784,11 @@ var usersReducer = function usersReducer() {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       var new_state = _defineProperty({}, action.currentUser.id, action.currentUser);
 
-      return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, state, new_state);
+      return lodash_merge__WEBPACK_IMPORTED_MODULE_2___default()({}, state, new_state);
+
+    case _actions_place_actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_PLACE"]:
+      // return merge({}, state, action.authors)
+      return action.authors;
 
     default:
       return state;
@@ -1510,6 +1824,28 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/photo_api_util.js":
+/*!*****************************************!*\
+  !*** ./frontend/util/photo_api_util.js ***!
+  \*****************************************/
+/*! exports provided: createPhotoForPlace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPhotoForPlace", function() { return createPhotoForPlace; });
+var createPhotoForPlace = function createPhotoForPlace(photo) {
+  return $.ajax({
+    url: "api/photos",
+    method: 'POST',
+    data: {
+      photo: photo
+    }
+  });
+};
 
 /***/ }),
 

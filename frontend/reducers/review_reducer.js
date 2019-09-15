@@ -7,7 +7,8 @@ const reviewReducer = (state={}, action) => {
         case(RECEIVE_REVIEW):
             return merge({}, state, action.review)
         case(RECEIVE_PLACE):
-            return merge({}, state, action.reviews)
+            // return merge({}, state, action.reviews)
+            return action.reviews
         default:
             return state;
     }
