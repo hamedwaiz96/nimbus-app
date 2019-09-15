@@ -18,6 +18,7 @@ class PlaceShow extends React.Component {
         })
         this.previousPhoto = this.previousPhoto.bind(this);
         this.nextPhoto = this.nextPhoto.bind(this);
+        this.rating = this.props.place.
     }
 
     previousPhoto(){
@@ -53,13 +54,17 @@ class PlaceShow extends React.Component {
             show = (
                 <div className="place-show">
                     <div className='place-photos-container'>
-                        <span onClick={this.previousPhoto}>Previous</span>
+                        <div className="previous-container" onClick={this.previousPhoto}>
+                            <span className="previous" >{"<"}</span>
+                        </div>
                         <ul className="place-photos">
                             {this.front_photos.map((photo, idx) => {
                                 return(<PhotoItem photo={photo} idx={idx} key={photo.id} />)
                             })}
                         </ul>
-                        <span onClick={this.nextPhoto}>Next</span>
+                        <div className="next-container" onClick={this.nextPhoto}>
+                            <span className="next">{">"}</span>
+                        </div>
                     </div>
                     <hr/>
                     <h1>{this.props.place.name}</h1>

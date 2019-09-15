@@ -8,7 +8,7 @@ class PhotoItem extends React.Component {
     render(){
         return(
             <li className="place-photo-item-container">
-                <img className="place-photo-item" src={this.props.photo.url} alt="" height="100" width="100"/>
+                <img className="place-photo-item" src={this.props.photo.url} alt=""/>
             </li>
         )
     }

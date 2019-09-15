@@ -14,6 +14,10 @@
  *= require_self
  */
 
+ html {
+     height: 100%;
+ }
+
 body {
     margin: 0;
     background: url("https://wallpaperplay.com/walls/full/9/5/7/180409.jpg") center center no-repeat;
@@ -282,11 +286,62 @@ body {
     list-style: none;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 2px 0;
+    border:1px solid grey;
+}
+
+.place-photos-container {
+    display: flex;
+    align-items: center;
     justify-content: space-around;
-    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.place-photo-item-container {
+    width: 25%;
+    height: 100px;
+    margin: 0 10px;
 }
 
 
 .place-photo-item {
     border-radius: 5px;
+    width: 100px;
+    height: 100px;
+}
+
+/* .place-photo-item-container:first-of-type {
+     margin-left: 0;
+}
+.place-photo-item-container:last-of-type {
+    margin-right: 0;
+} */
+
+.previous-container, .next-container {
+    width: 16%;
+    height: 106px;
+    background: grey;
+    text-align: center;
+    font-weight: 700;
+    color: white;
+    line-height: 100px;
+}
+
+.next-container {
+    border-radius: 0 5px 5px 0;
+}
+
+.previous-container {
+    border-radius: 5px 0 0 5px;
+}
+
+.previous-container:hover, .next-container:hover {
+    cursor:pointer;
+    opacity: 0.5
+}
+
+hr {
+    margin:0;
 }
