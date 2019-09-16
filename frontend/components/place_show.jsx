@@ -18,7 +18,7 @@ class PlaceShow extends React.Component {
         })
         this.previousPhoto = this.previousPhoto.bind(this);
         this.nextPhoto = this.nextPhoto.bind(this);
-        this.rating = this.props.place.
+        this.rating = this.props.place.rating;
     }
 
     previousPhoto(){
