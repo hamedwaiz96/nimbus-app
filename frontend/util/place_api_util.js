@@ -12,3 +12,11 @@ export const fetchPlace = (id) => (
         method: 'GET'
     })
 );
+
+export const createPlace = (place) => (
+    $.ajax({
+        url: 'api/places',
+        method: 'POST',
+        data: {place}
+    })
+)

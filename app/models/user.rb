@@ -8,6 +8,7 @@ class User < ApplicationRecord
         class_name: 'Review',
         foreign_key: :author_id
     has_many :photos
+    has_many :places
 
     after_initialize :ensure_session_token
 

@@ -47,67 +47,78 @@ ActiveRecord::Base.transaction do
             'name' => 'King Castle Tour',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/5/58/KingCastle.jpg/revision/latest?cb=20100415061052',
             'location' => 'Central City',
-            'hours' => '7:00 AM - 5:00 PM'
+            'hours' => '7:00 AM - 5:00 PM',
+            'user_id' => 1
         },
         '2' => {
             'name' => 'NBS News Station Tour',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/c/c8/Nbsafterkingpiccolo.png/revision/latest?cb=20110811042609',
             'location' => 'Central City',
-            'hours' => '6:00 AM - 12:00 PM'
+            'hours' => '6:00 AM - 12:00 PM',
+            'user_id' => 2
         },
         '3' => {
             'name' => 'Orin Temple',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/e/e0/Orin_Temple.png/revision/latest/scale-to-width-down/180?cb=20120823090815',
             'location' => 'East City',
-            'hours' => '8:00 AM - 6:00 PM'
+            'hours' => '8:00 AM - 6:00 PM',
+            'user_id' => 3
         },
         '4' => {
             'name' => 'Bamboo Forest Exhibit',
             'photo' => 'http://d17oknutsq9rw.cloudfront.net/wp-content/uploads/2016/05/09161338/15723813830_77dde6c570_h-800x450.jpg',
             'location' => 'East City',
-            'hours' => '9:00 AM - 8:00 PM'
+            'hours' => '9:00 AM - 8:00 PM',
+            'user_id' => 4
         },
         '5' => {
             'name' => 'Martial Arts Temple',
             'photo' => 'https://static.planetminecraft.com/files/resource_media/screenshot/1432/dbzarena7974238.jpg',
             'location' => 'Papaya Island',
-            'hours' => '7:00 AM - 8:00 PM'
+            'hours' => '7:00 AM - 8:00 PM',
+            'user_id' => 1
         },
         '6' => {
             'name' => 'Delicious Saikan',
             'photo' => 'https://cdnb.artstation.com/p/assets/images/images/010/011/507/large/manohar-soans-ichiraku-ramen-interior3.jpg?1522084867',
             'location' => 'Papaya Island',
-            'hours' => '7:00 AM - 7:00 PM'
+            'hours' => '7:00 AM - 7:00 PM',
+            'user_id' => 2
         },
         '7' => {
             'name' => 'Papaya Coffee Shop',
             'photo' => 'https://cdna.artstation.com/p/assets/images/images/012/900/714/large/amanda-ejiri-1.jpg?1537104580',
             'location' => 'Papaya Island',
-            'hours' => '8:00 AM - 4:00 PM'
+            'hours' => '8:00 AM - 4:00 PM',
+            'user_id' => 3
         },
         '8' => {
             'name' => 'Capsule Corporation',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/3/32/Capsule_Corporation_DBZ_Ep_207_001.png/revision/latest?cb=20170827042823',
             'location' => 'West City',
-            'hours' => '7:00 AM - 7:00 PM'
+            'hours' => '7:00 AM - 7:00 PM',
+            'user_id' => 4
         },
         '9' => {
             'name' => 'Dream Land',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/a/a7/Dream_Land_DB_Ep_44_001.png/revision/latest?cb=20171105190533',
             'location' => 'West City',
-            'hours' => '5:00 AM - 9:00 PM'
+            'hours' => '5:00 AM - 9:00 PM',
+            'user_id' => 1
         },
         '10' => {
             'name' => 'ZZTV Tour',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/0/0b/ZTVHQ02.png/revision/latest?cb=20091202104939',
             'location' => 'West City',
-            'hours' => '6:00 AM - 7:00 PM'
+            'hours' => '6:00 AM - 7:00 PM',
+            'user_id' => 2
         },
         '11' => {
             'name' => 'Tongari Tower Tour',
             'photo' => 'https://vignette.wikia.nocookie.net/dragonball/images/b/bc/Korin_Tower_DBZ_Ep_217_001.png/revision/latest?cb=20170827070705',
             'location' => 'West City',
-            'hours' => '9:00 AM - 5:00 PM'
+            'hours' => '9:00 AM - 5:00 PM',
+            'user_id' => 3
         }
     }
 
@@ -319,76 +330,76 @@ ActiveRecord::Base.transaction do
             'place_id' => 7,
             'user_id' => 3
         },
-        '21' => {
+        '23' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/CoffeeShop_2.jpg',
             'place_id' => 7,
             'user_id' => 4
         },
-        '22' => {
+        '24' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/CoffeeShop_3.jpg',
             'place_id' => 7,
             'user_id' => 1
         },
         # Capsule Corporation
-        '23' => {
+        '25' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/CapsuleCorp_1.jpg',
             'place_id' => 8,
             'user_id' => 2
         },
-        '24' => {
+        '26' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/CapsuleCorp_2.jpg',
             'place_id' => 8,
             'user_id' => 3
         },
-        '25' => {
+        '27' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/CapsuleCorp_3.jpg',
             'place_id' => 8,
             'user_id' => 4
         },
         # Dream Land
-        '26' => {
+        '28' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/DreamLand_1.jpg',
             'place_id' => 9,
             'user_id' => 1
         },
-        '27' => {
+        '29' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/DreamLand_2.jpg',
             'place_id' => 9,
             'user_id' => 2
         },
-        '28' => {
+        '30' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/DreamLand_3.jpg',
             'place_id' => 9,
             'user_id' => 3
         },
         # ZZTV Tour
-        '29' => {
+        '31' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/ZZTV_1.jpg',
             'place_id' => 10,
             'user_id' => 4
         },
-        '30' => {
+        '32' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/ZZTV_2.jpg',
             'place_id' => 10,
             'user_id' => 1
         },
-        '31' => {
+        '33' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/ZZTV_3.jpg',
             'place_id' => 10,
             'user_id' => 2
         },
         # Tongari Tower Tour
-        '32' => {
+        '34' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/Tongari_1.jpg',
             'place_id' => 11,
             'user_id' => 3
         },
-        '33' => {
+        '35' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/Tongari_2.jpg',
             'place_id' => 11,
             'user_id' => 4
         },
-        '34' => {
+        '36' => {
             'url' => 'https://nimbusham.s3-us-west-1.amazonaws.com/Nimbus/Photos/Tongari_3.jpg',
             'place_id' => 11,
             'user_id' => 1

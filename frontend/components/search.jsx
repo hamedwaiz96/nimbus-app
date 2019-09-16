@@ -1,9 +1,10 @@
 import React from 'react';
 import PlaceIndex from './place_index';
 import GreetingContainer from './greeting_container'
+import PlaceShowContainer from './place_show_container';
+import PlaceFormContainer from './place_form_container';
 import {Link, withRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
-import PlaceShowContainer from './place_show_container';
 
 class Search extends React.Component {
     constructor(props) {
@@ -104,11 +105,12 @@ class Search extends React.Component {
         return(
                 <div className="full">
                 <header className="search">
+                    <Link className="place-creator" to="/places/new">Create Place</Link>
                     <div className="search-inside">
                         <Link className="nimbus" to="/">Nimbus</Link>
                         {search}
-                        <GreetingContainer />
                     </div>
+                    <GreetingContainer />
                 </header>
                 <Switch>
                     <Route exact path="/" render={(props) => (
@@ -172,6 +174,7 @@ class Search extends React.Component {
                         </main>
                     )}/>
                     <Route path="/places/:id" component={PlaceShowContainer} />
+                    <Route exact path="/places/new" component={PlaceFormContainer} />
                 </Switch>
                 </div>
         )
