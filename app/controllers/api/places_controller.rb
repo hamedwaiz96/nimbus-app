@@ -18,11 +18,13 @@ class Api::PlacesController < ApplicationController
     def create
         @place = current_user.places.new(place_params)
         if @place.save
-            params[:place][:tags].each do |tag|
-                Tagging.create!({
-                    'tag_id': tag.to_i,
-                    'place_id': @place.id
-                })
+            if not params[:place][:tags].nil?
+                params[:place][:tags].each do |tag|
+                    Tagging.create!({
+                        'tag_id': tag.to_i,
+                        'place_id': @place.id
+                    })
+                end
             end
             render 'api/places/show.json.jbuilder'
         else

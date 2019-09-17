@@ -3,7 +3,8 @@ import {RECEIVE_SESSION_ERRORS, RECEIVE_CURRENT_USER} from '../actions/session_a
 const sessionErrorsReducer = (state=[], action) => {
     switch(action.type){
         case(RECEIVE_SESSION_ERRORS):
-            return action.errors;
+        console.log(action.err)
+            return [...action.err.responseJSON];
         case(RECEIVE_CURRENT_USER):
             return [];
         default:
