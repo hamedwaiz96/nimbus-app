@@ -7,9 +7,9 @@ const mapStateToProps = (state, ownProps) => ({
     loading: state.ui.loading.detailLoading,
     id: parseInt(ownProps.match.params.id),
     place: state.entities.places[parseInt(ownProps.match.params.id)],
-    authors: getUsers(state.entities.users),
-    reviews: getReviews(state.entities.reviews),
-    photos: getPhotos(state.entities.photos)
+    authors: getUsers(state.entities.users, getReviews(state.entities.reviews, parseInt(ownProps.match.params.id))),
+    reviews: getReviews(state.entities.reviews, parseInt(ownProps.match.params.id)),
+    photos: getPhotos(state.entities.photos, parseInt(ownProps.match.params.id))
 });
 
 const mapDispatchToProps = dispatch => ({

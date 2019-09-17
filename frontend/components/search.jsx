@@ -3,6 +3,7 @@ import PlaceIndex from './place_index';
 import GreetingContainer from './greeting_container'
 import PlaceShowContainer from './place_show_container';
 import PlaceFormContainer from './place_form_container';
+import { ProtectedRoute } from '../util/route_util';
 import {Link, withRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
 
@@ -173,8 +174,8 @@ class Search extends React.Component {
                             <PlaceIndex places={this.props.places} loading={this.props.loading} />
                         </main>
                     )}/>
+                    <ProtectedRoute exact path="/places/new" component={PlaceFormContainer} />
                     <Route path="/places/:id" component={PlaceShowContainer} />
-                    <Route exact path="/places/new" component={PlaceFormContainer} />
                 </Switch>
                 </div>
         )

@@ -7,8 +7,7 @@ const photoReducer = (state = {}, action) => {
         case (RECEIVE_PHOTO):
             return merge({}, state, action.photo)
         case (RECEIVE_PLACE):
-            // return merge({}, state, action.photos)
-            return action.photos
+            return merge({}, state, action.photos)
         default:
             return state;
     }

@@ -10,8 +10,7 @@ const usersReducer = (state={}, action) => {
             };
             return merge({}, state, new_state);
         case(RECEIVE_PLACE):
-            // return merge({}, state, action.authors)
-            return action.authors
+            return merge({}, state, action.authors)
         default:
             return state;
     }

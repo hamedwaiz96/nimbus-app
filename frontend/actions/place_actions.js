@@ -36,3 +36,7 @@ export const fetchPlace = (id) => dispatch => {
     return APIUtil.fetchPlace(id).then((whole) => dispatch(receivePlace(whole)))
 };
 
+export const createPlace = (place) => dispatch => {(
+    APIUtil.createPlace(place).then((place) => dispatch(receivePlace(place)))
+)};
+

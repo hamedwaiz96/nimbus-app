@@ -18,6 +18,12 @@ class Api::PlacesController < ApplicationController
     def create
         @place = current_user.places.new(place_params)
         if @place.save
+            params[:place][:tags].each do |tag|
+                Tagging.create!({
+                    'tag_id': tag.to_i,
+                    'place_id': @place.id
+                })
+            end
             render 'api/places/show.json.jbuilder'
         else
             render json: @place.errors.full_messages, status: 422
@@ -25,6 +31,6 @@ class Api::PlacesController < ApplicationController
     end
 
     def place_params
-        params.require(:place).permit(:user_id, :photo, :name, :hours, )
+        params.require(:place).permit(:user_id, :photo, :name, :hours, :location)
     end
 end
