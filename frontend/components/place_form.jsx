@@ -54,15 +54,13 @@ class PlaceForm extends React.Component {
                 data: Formdata
             }).then(
                 (res) => {
-                    console.log(res);
                     self.state.photo = res.data.secure_url;
                     self.props.createPlace(self.state).then((place) => {
                         self.props.history.push(`/places/${place.id}`)
                     })
                 },
                 (err) => {
-                    console.log(err)
-                    console.log(this.state)
+                    
                 }
             )
         } else {

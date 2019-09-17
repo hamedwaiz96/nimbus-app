@@ -4,6 +4,7 @@ export const RECEIVE_PLACES = 'RECEIVE_PLACES';
 export const RECEIVE_PLACE = 'RECEIVE_PLACE';
 export const START_LOADING_PLACE = 'START_LOADING_PLACE';
 export const START_LOADING_PLACES = 'START_LOADING_PLACES';
+export const RECEIVE_ERRORS = 'RECEIVE_ERRORS';
 
 export const receivePlaces = places => ({
     type: RECEIVE_PLACES,
@@ -17,6 +18,11 @@ export const receivePlace = ({place, reviews, authors, photos}) => ({
     authors,
     photos
 });
+
+export const receiveErrors = (err) => ({
+    type: RECEIVE_ERRORS,
+    err,
+})
 
 export const startLoadingPlace = () => ({
     type: START_LOADING_PLACE,
@@ -37,6 +43,5 @@ export const fetchPlace = (id) => dispatch => {
 };
 
 export const createPlace = (place) => dispatch => {(
-    APIUtil.createPlace(place).then((place) => dispatch(receivePlace(place)))
+    APIUtil.createPlace(place).then((place) => dispatch(receivePlace(place)), (err) => dispatch(receiveErrors(err)))
 )};
-
