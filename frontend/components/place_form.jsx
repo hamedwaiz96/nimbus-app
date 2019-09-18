@@ -4,6 +4,12 @@ import {withRouter} from 'react-router-dom';
 
 import {CLOUDINARY_IMAGE_URL, CLOUDINARY_PRESET} from '../util/cloudinary_info';
 
+let ERRORS = {
+    'name': "Name can't be blank",
+    'hours': "Hours can't be blank",
+    'photo': "Image Upload Error"
+}
+
 class PlaceForm extends React.Component {
     constructor(props){
         super(props);
@@ -40,6 +46,20 @@ class PlaceForm extends React.Component {
         this.state.hours = `${from_time} ${from_am_or_pm} to ${to_time} ${to_am_or_pm}`;
     }
 
+    updateImage(){
+        if(this.file != ""){
+            
+            axios({
+                url: CLOUDINARY_IMAGE_URL,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: Formdata
+            })
+        }
+    }
+
     handleSubmit(e){
         e.preventDefault();
         const self = this;
@@ -48,25 +68,39 @@ class PlaceForm extends React.Component {
         Formdata.append('file', this.file);
         Formdata.append('upload_preset', CLOUDINARY_PRESET)
         Formdata.append('folder', "nimbus/places/photos")
-        axios({
-            url: CLOUDINARY_IMAGE_URL,
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            data: Formdata
-        }).then(
-            (res) => {
-                self.state.photo = res.data.secure_url;
-                console.log(self.state)
-                self.props.createPlace(self.state).then((whole) => {
-                    self.props.history.push(`/places/${whole.place.id}`)
-                })
-            },
-            (err) => {
-                this.props.receiveErrors(err);
+        if (this.state.name != "" && this.state.hours != ""){
+            axios({
+                url: CLOUDINARY_IMAGE_URL,
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                data: Formdata
+            }).then(
+                (res) => {
+                    self.state.photo = res.data.secure_url;
+                    self.props.createPlace(self.state).then((whole) => {
+                        self.props.history.push(`/places/${whole.place.id}`)
+                    })
+                },
+                (err) => {
+                    this.props.receiveErrors(err);
+                }
+            )
+        } else {
+            let errors = [];
+            if(this.state.name === ""){
+                errors.push(ERRORS['name'])
             }
-        )
+            if(this.state.hours === ""){
+                errors.push(ERRORS['hours'])
+            }
+            if(this.state.photo === ""){
+                errors.push(ERRORS['photo'])
+            }
+            this.props.receiveErrors(errors)
+        }
+        // createPlace.then(this.uploadImage).then(this.updatePlaceImage)
         
     }
 
@@ -102,7 +136,6 @@ class PlaceForm extends React.Component {
     }
 
     render(){
-        console.log(this.props.errors);
         return(
             <div className="place-form-container" >
                 <ul className="error-list">
