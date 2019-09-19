@@ -10,8 +10,8 @@ class PlacePhotosForUser extends React.Component {
         }
         // Example: this.prop.photos = {0: [photo, photo], 32: [photo], 33: []} (key is place_id)
         // Example: this.props.place = {place}
-        if (this.props.photos[this.props.place.id] != []) {
-            this.photos = this.props.photos[this.props.place.id]
+        if (this.props.photos != []) {
+            this.photos = this.props.photos
         } else {
             this.photos = []
         }
@@ -42,6 +42,7 @@ class PlacePhotosForUser extends React.Component {
     }
 
     render(){
+        console.log(this.props.photos)
         if(this.photos.length === 0){
             return(
                 ""

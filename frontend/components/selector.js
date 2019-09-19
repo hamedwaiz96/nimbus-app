@@ -63,7 +63,7 @@ export const getPlacesForUser = (places, filtered_reviews) => {
 export const getPhotosForUser = (photos, id) => {
     let new_photos = [];
     for (var i in photos) {
-        if (photos[i].id === id) {
+        if (photos[i].user_id === id) {
             new_photos.push(photos[i])
         }
     }

@@ -21,7 +21,7 @@ class UserShow extends React.Component {
                 <NimbusLoader />
             )
         } else {
-            console.log(this.props.reviews)
+            console.log(this.props.photos)
             return(
                 <div className="user-show-container">
                     <img className="user-show-photo" src={this.props.user.image} alt="User Profile Picture" height="200" width="200" />
