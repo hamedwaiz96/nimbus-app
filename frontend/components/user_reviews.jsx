@@ -36,7 +36,10 @@ class UserReviews extends React.Component {
                         </div>
                     </div>
                     <div className="place-show-review-container">
-                        <div className={this.review_count}></div>
+                        <div className="rating-date">
+                            <div className={this.review_count}></div>
+                            <span>{this.date}</span>
+                        </div>
                         <p><q>{this.props.review.body}</q></p>
                         <PlacePhotosForUser photos={this.props.photos[this.place.id]} place={this.place} />
                     </div>

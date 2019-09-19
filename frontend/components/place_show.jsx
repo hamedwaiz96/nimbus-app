@@ -2,7 +2,7 @@ import React from 'react';
 import ReviewItemContainer from './review_item_container';
 import NimbusLoader from './nimbus_loader';
 import PlacePhotos from './place_photos';
-import {withRouter} from 'react-router-dom';
+import {withRouter, Link} from 'react-router-dom';
 
 class PlaceShow extends React.Component {
     constructor(props){
@@ -14,7 +14,7 @@ class PlaceShow extends React.Component {
             .then(() => {
             this.setState({ isLoaded: true })
         })
-        
+        this.link = `/reviews/new/${this.props.place.id}`
     }
 
     render(){
@@ -31,6 +31,7 @@ class PlaceShow extends React.Component {
                         <div className={this.rating}></div>
                         <span>{this.props.place.review_count} Reviews</span>
                     </div>
+                    <Link to={this.link}>Write a Review</Link>
                     <ul className="review-items">
                         {this.props.reviews.map((review) => {
                             return (<ReviewItemContainer review={review} key={review.id} />)

@@ -8,8 +8,6 @@ class PlacePhotosForUser extends React.Component {
             start: 0,
             last: 4
         }
-        // Example: this.prop.photos = {0: [photo, photo], 32: [photo], 33: []} (key is place_id)
-        // Example: this.props.place = {place}
         if (this.props.photos != []) {
             this.photos = this.props.photos
         } else {
@@ -42,7 +40,6 @@ class PlacePhotosForUser extends React.Component {
     }
 
     render(){
-        console.log(this.props.photos)
         if(this.photos.length === 0){
             return(
                 ""

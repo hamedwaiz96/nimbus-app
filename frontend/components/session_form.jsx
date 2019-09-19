@@ -14,13 +14,14 @@ class SessionForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
-        if(this.state.image === ""){
+        if(this.state.image === "" && this.props.formType=== 'signup'){
             this.state.image = "https://res.cloudinary.com/nimbus-app/image/upload/v1568840851/nimbus/users/default_user.jpg"
         }
         const user = Object.assign({}, this.state);
+        const self = this;
         this.props.processForm(user).then(() => {
-            if(this.props.errors === []){
-                this.props.history.push("/")
+            if(self.props.errors.length === 0){
+                self.props.history.push("/")
             }
         }, (err) => console.log(err));
     }
