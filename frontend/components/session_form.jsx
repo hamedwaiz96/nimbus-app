@@ -14,6 +14,9 @@ class SessionForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault();
+        if(this.state.image === ""){
+            this.state.image = "https://res.cloudinary.com/nimbus-app/image/upload/v1568840851/nimbus/users/default_user.jpg"
+        }
         const user = Object.assign({}, this.state);
         this.props.processForm(user).then(() => {
             if(this.props.errors === []){

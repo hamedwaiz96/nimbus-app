@@ -369,3 +369,7 @@ hr {
 .error-list {
     background: green;
 }
+
+.user-show-review-list {
+    list-style: none;
+}
