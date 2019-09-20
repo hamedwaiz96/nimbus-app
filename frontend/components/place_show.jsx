@@ -14,7 +14,7 @@ class PlaceShow extends React.Component {
             .then(() => {
             this.setState({ isLoaded: true })
         })
-        this.link = `/reviews/new/${this.props.place.id}`
+        this.link = `/reviews/new/${this.props.id}`
     }
 
     render(){

@@ -373,3 +373,35 @@ hr {
 .user-show-review-list {
     list-style: none;
 }
+
+.rating-sprite {
+    list-style: none;
+    display: flex;
+    direction: rtl;
+    justify-content: flex-end;
+    /* margin-left: 10%; */
+}
+
+.rating-sprite > li {
+    width: 20px;
+    height: 20px;
+    background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px 0px;
+}
+
+.rating-sprite > li:hover,
+.rating-sprite > li:hover ~ li {
+    width: 20px;
+    height: 20px;
+    background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -20px;
+}
+
+.review-form {
+    display: flex;
+
+}
+
+.rating-full {
+    display: flex;
+    align-content: center;
+    margin-left: 10%;
+}

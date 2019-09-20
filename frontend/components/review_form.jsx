@@ -16,12 +16,29 @@ class ReviewForm extends React.Component {
         if(this.props.place_id != 'main'){
             this.place = this.props.places[parseInt(this.props.place_id)]
         }
+        this.update = this.update.bind(this);
+    }
+
+    update(key){
+        return e => {
+            this.setState({[key]: e.target.value})
+        }
     }
 
     render(){
         return(
-            <form onSubmit={this.handleSubmit}>
-                
+            <form className="review-form" onSubmit={this.handleSubmit}>
+                <label className="rating-full">
+                    <p>Rating:</p>
+                    <ul className="rating-sprite">
+                        <li className="rating-sprite-1"></li>
+                        <li className="rating-sprite-2"></li>
+                        <li className="rating-sprite-3"></li>
+                        <li className="rating-sprite-4"></li>
+                        <li className="rating-sprite-5"></li>
+                    </ul>
+                </label>
+                <input type="text" value={this.state.body} onChange={this.update('body')} />
             </form>
         )
     }

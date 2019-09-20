@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import ReviewForm from './review_form';
-import fetchPlaces from '../actions/place_actions';
-import createReview from '../actions/review_actions';
+import {fetchPlaces} from '../actions/place_actions';
+import {createReview} from '../actions/review_actions';
 
 const mapStateToProps = (state, ownProps) => {
     let place_id = ownProps.match.params.place_id
