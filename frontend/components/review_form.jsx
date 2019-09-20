@@ -27,19 +27,22 @@ class ReviewForm extends React.Component {
 
     render(){
         return(
-            <form className="review-form" onSubmit={this.handleSubmit}>
-                <label className="rating-full">
-                    <p>Rating:</p>
-                    <ul className="rating-sprite">
-                        <li className="rating-sprite-1"></li>
-                        <li className="rating-sprite-2"></li>
-                        <li className="rating-sprite-3"></li>
-                        <li className="rating-sprite-4"></li>
-                        <li className="rating-sprite-5"></li>
-                    </ul>
-                </label>
-                <input type="text" value={this.state.body} onChange={this.update('body')} />
-            </form>
+            <div className="review-form-container">
+                <form className="review-form" onSubmit={this.handleSubmit}>
+                    <label className="rating-full">
+                        <p>Rating:</p>
+                        <ul className="rating-sprite">
+                            <li className="rating-sprite-1"></li>
+                            <li className="rating-sprite-2"></li>
+                            <li className="rating-sprite-3"></li>
+                            <li className="rating-sprite-4"></li>
+                            <li className="rating-sprite-5"></li>
+                        </ul>
+                    </label>
+                    <input type="text" value={this.state.body} onChange={this.update('body')} />
+                </form>
+            </div>
+            
         )
     }
 }

@@ -23,10 +23,30 @@ body {
     background: url("https://wallpaperplay.com/walls/full/9/5/7/180409.jpg") center center no-repeat;
     background-size: cover;
     z-index: 0;
+    height: 100%;
+    width: 100%;
 }
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+#root > div {
+    height: 100%;
+    width: 100%;
+}
+
 .full {
     z-index: 1;
     min-width: 671px;
+    height: 100%;
+    width: 100%;
+}
+
+.review-form-container {
+    height: 100%;
+    background: white;
 }
 .search {
     background: #fee03f;
@@ -396,12 +416,12 @@ hr {
 }
 
 .review-form {
-    display: flex;
-
+    background: white;
+    width: 50%;
+    margin: auto;
 }
 
 .rating-full {
     display: flex;
     align-content: center;
-    margin-left: 10%;
 }
