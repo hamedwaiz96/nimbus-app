@@ -44,6 +44,19 @@ body {
     width: 100%;
 }
 
+.session-form-container {
+    background: white;
+    width: 50%;
+    margin: 0 25%;
+    height: 50%;
+    text-align: center;
+}
+
+.session-form > label {
+    display: block;
+    margin-bottom: 20px;
+}
+
 .review-form-container {
     height: 100%;
     background: white;

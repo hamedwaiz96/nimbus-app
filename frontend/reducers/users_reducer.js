@@ -7,7 +7,11 @@ const usersReducer = (state={}, action) => {
     Object.freeze(state)
     switch(action.type){
         case(RECEIVE_CURRENT_USER):
-            return merge({}, state, action.currentUser);
+            if('user' in action.currentUser){
+                return merge({}, state, action.currentUser.user)
+            }
+            let first_key = action.currentUser.id
+            return merge({}, state, {[first_key]: action.currentUser});
         case(RECEIVE_PLACE):
             return merge({}, state, action.authors)
         case(RECEIVE_USER): 

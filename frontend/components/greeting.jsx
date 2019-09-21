@@ -4,16 +4,15 @@ import {Link} from 'react-router-dom';
 class Greeting extends React.Component {
     constructor(props){
         super(props);
-        if(this.props.currentUser){
-            this.url = `/users/${this.props.id}`
-        }
+
     }
 
     render(){
         if(this.props.currentUser){
+            let url = `/users/${this.props.id}`
             return(
                 <nav className="logged-in">
-                    <p>Hello, <Link to={this.url}>{this.props.currentUser.username}</Link>!</p>
+                    <p>Hello, <Link to={url}>{this.props.currentUser.username}</Link>!</p>
                     <button onClick={this.props.logout}>Logout</button>
                 </nav>
             )

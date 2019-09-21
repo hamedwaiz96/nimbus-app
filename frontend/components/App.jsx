@@ -9,9 +9,6 @@ import SearchContainer from './search_container';
 const App = () => (
     <div>
         <Route path="/" component={SearchContainer} />
-        <AuthRoute path="/login" component={LoginFormContainer}/>
-        <AuthRoute path="/signup" component={SignupFormContainer}/>
-        <ProtectedRoute path="/places/:place_id/reviews/new"/>
     </div>
 );
 

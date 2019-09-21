@@ -46,19 +46,19 @@ class PlaceForm extends React.Component {
         this.state.hours = `${from_time} ${from_am_or_pm} to ${to_time} ${to_am_or_pm}`;
     }
 
-    updateImage(){
-        if(this.file != ""){
+    // updateImage(){
+    //     if(this.file != ""){
             
-            axios({
-                url: CLOUDINARY_IMAGE_URL,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                data: Formdata
-            })
-        }
-    }
+    //         axios({
+    //             url: CLOUDINARY_IMAGE_URL,
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/x-www-form-urlencoded'
+    //             },
+    //             data: Formdata
+    //         })
+    //     }
+    // }
 
     handleSubmit(e){
         e.preventDefault();

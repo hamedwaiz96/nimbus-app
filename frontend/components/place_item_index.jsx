@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 class PlaceItemIndex extends React.Component {
     constructor(props){
         super(props)
-        Class = `rating${Math.round(this.props.place.average_rating)} review-photo`
+        this.ratingClass = `rating${Math.round(this.props.place.average_rating)} review-photo`
         this.link = `/places/${this.props.place.id}`
         this.price = '$'.repeat(Math.round(this.props.place.average_price))
     }
