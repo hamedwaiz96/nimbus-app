@@ -25,7 +25,7 @@ class PlaceIndex extends React.Component {
             )
         }
         return(
-            <div>
+            <div className="place-index-container">
                 {loading}
             </div>
         )

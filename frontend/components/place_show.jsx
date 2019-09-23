@@ -15,6 +15,11 @@ class PlaceShow extends React.Component {
             this.setState({ isLoaded: true })
         })
         this.link = `/reviews/new/${this.props.id}`
+        this.hideOverlay = this.hideOverlay.bind(this);
+    }
+
+    hideOverlay(){
+        document.getElementById('overlay').style.display = 'none';
     }
 
     render(){
@@ -47,6 +52,10 @@ class PlaceShow extends React.Component {
         }
         return(
             <div>
+                <div id="overlay" onClick={this.hideOverlay}>
+                    
+                    <img id="overlay-image" src="" alt="" />
+                </div>
                 {show}
             </div>
         )

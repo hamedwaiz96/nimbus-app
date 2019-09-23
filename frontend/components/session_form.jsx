@@ -31,7 +31,8 @@ class SessionForm extends React.Component {
             const user = Object.assign({}, this.state);
             this.props.processForm(user).then(() => {
                 if (self.props.errors.length === 0) {
-                    self.props.history.push("/")
+                    console.log(self.props.history)
+                    self.props.history.goBack();
                 }
             }, (err) => console.log(err));
         }
@@ -40,7 +41,7 @@ class SessionForm extends React.Component {
             const user = Object.assign({}, this.state);
             this.props.processForm(user).then(() => {
                 if (self.props.errors.length === 0) {
-                    self.props.history.push("/")
+                    self.props.history.goBack();
                 }
             }, (err) => console.log(err));
         } else if(this.state.username != "" && this.state.password.length >= 6 ){

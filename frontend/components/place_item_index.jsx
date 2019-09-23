@@ -12,20 +12,23 @@ class PlaceItemIndex extends React.Component {
 
     render(){
         return(
-            <Link className="place-item" to={this.link}>
-                <img className="main-photo" src={this.props.place.photo} height="100" width="100" alt=""/>
-                <div className="place-item-info" >
-                    <p className="place-item-name">{this.props.place.name}</p>
-                    <div className="place-item-reviews">
-                        <div className={this.ratingClass}></div>
-                        <span>{this.props.place.review_count} Reviews</span>
+            <div className="place-item-index-container">
+                <Link className="place-item" to={this.link}>
+                    <img className="main-photo" src={this.props.place.photo} height="100" width="100" alt="" />
+                    <div className="place-item-info" >
+                        <p className="place-item-name">{this.props.place.name}</p>
+                        <div className="place-item-reviews">
+                            <div className={this.ratingClass}></div>
+                            <span>{this.props.place.review_count} Reviews</span>
+                        </div>
+                        <div className="place-item-more">
+                            <p className="price">{this.price}</p>
+                            <span>{this.props.place.tags}</span>
+                        </div>
                     </div>
-                    <div className="place-item-more">
-                        <p className="price">{this.price}</p>
-                        <span>{this.props.place.tags}</span>
-                    </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
+            
         )
     }
 }
