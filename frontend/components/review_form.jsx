@@ -16,7 +16,23 @@ class ReviewForm extends React.Component {
         if(this.props.place_id != 'main'){
             this.place = this.props.places[parseInt(this.props.place_id)]
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.update = this.update.bind(this);
+    }
+
+    errors() {
+        if (this.props.errors) {
+            return (
+                this.props.errors.map(error => {
+                    return (<li className="error" key={error}>{error}</li>);
+                })
+            );
+        }
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
     }
 
     update(key){
@@ -28,6 +44,9 @@ class ReviewForm extends React.Component {
     render(){
         return(
             <div className="review-form-container">
+                <ul className="error-list">
+                    {this.errors()}
+                </ul>
                 <form className="review-form" onSubmit={this.handleSubmit}>
                     <label className="rating-full">
                         <p>Rating:</p>

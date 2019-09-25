@@ -97,6 +97,7 @@ body {
      min-width: 550px;
      background: white;
      border-radius: 5px 5px;
+     font-family: 'Roboto', sans-serif;
  }
 
  .place-items {
@@ -231,42 +232,48 @@ body {
 
  }
  .rating1 {
-     width: 120px;
+     width: 105px;
      height: 20px;
      background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -20px;
  }
 
  .rating2 {
-     width: 120px;
+     width: 105px;
      height: 20px;
      background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -40px;
  }
 
  .rating3 {
-     width: 120px;
+     width: 105px;
      height: 20px;
      background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -60px;
  }
 
  .rating4 {
-     width: 120px;
+     width: 105px;
      height: 20px;
      background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -80px;
  }
 
  .rating5 {
-     width: 120px;
+     width: 105px;
      height: 20px;
      background: url(https://i.stack.imgur.com/oZ9Id.png) no-repeat 0px -100px;
- }
- 
- .review-count {
-     position: absolute
  }
 
  .filter-inside.hide {
     height: 0;
     transition: height 0.4s ease-in;
+ }
+
+ .rating-body-review {
+    float: right;
+    margin-bottom: 5px;
+ }
+
+ .rating-body-par > q {
+     float: right;
+     font-size: 14px;
  }
 
  .place-item-reviews {
@@ -276,6 +283,8 @@ body {
     font-family: 'Roboto', sans-serif;
     align-items: center;
     color: grey;
+    margin-bottom: 10px;
+    justify-content: center;
  }
 
  .review-photo {
@@ -333,6 +342,30 @@ body {
 
 .review-items {
     list-style: none;
+    text-align: center;
+    padding: 0;
+    width: 75%;
+    margin: auto;
+}
+
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid lightgrey;
+    padding: 10px 20px;
+}
+
+.review-item:last-of-type {
+    border-bottom: none;
+}
+
+.review-user-info {
+    display: table;
+
+}
+
+.place-show-review-count {
+    margin-left: 5px;
 }
 
 .review-user-info {
@@ -340,8 +373,13 @@ body {
 
 }
 
+.review-user-details {
+    text-align: initial;
+}
+
 .review-user-photo {
     border-radius: 5px;
+    margin-right:5px;
 }
 
 .place-main-photo {
@@ -358,6 +396,11 @@ body {
 }
 
 .place-photos-container {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.place-photos-block {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -504,6 +547,34 @@ hr {
     color: white;
 }
 
+.place-item-write, .photo-create {
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 5px 8px;
+    border-radius: 5px 5px;
+}
+
+.place-show-details {
+    margin: auto;
+    width: 75%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.review-count {
+    font-size: 12px !important;
+    display: block !important;
+}
+
+.review-item-details {
+    display: flex;
+}
+
+.photo-count {
+    font-size: 12px !important;
+}
+
 #overlay {
   position: fixed;
   display: none;
@@ -515,12 +586,24 @@ hr {
   bottom: 0;
   background-color: rgba(0,0,0,0.6);
   z-index: 2;
-  cursor: pointer;
 }
 
 #overlay-image {
-    width: 50%;
-    height: 50%;
-    margin-left: 25%;
-    margin-top: 25%;
+    width: 75%;
+    height: 75%;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.black-bar {
+    background: black;
+    height: 20px;
+    color: white;
+    cursor: pointer;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.black-bar:hover {
+    text-decoration: underline;
 }

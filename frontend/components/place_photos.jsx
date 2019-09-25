@@ -1,5 +1,6 @@
 import React from 'react';
 import PhotoItem from './photo_item';
+import {Link} from 'react-router-dom';
 
 class PlacePhotos extends React.Component {
     constructor(props){
@@ -35,6 +36,7 @@ class PlacePhotos extends React.Component {
     }
 
     render(){
+        this.place = `/photos/new/${this.props.place.id}`
         if (this.props.photos.length <= 4) {
             this.front_photos = this.props.photos
         } else {
@@ -42,17 +44,20 @@ class PlacePhotos extends React.Component {
         }
         return(
             <div className='place-photos-container'>
-                <div className="previous-container" onClick={this.previousPhoto}>
-                    <span className="previous" >{"<"}</span>
+                <div className="place-photos-block">
+                    <div className="previous-container" onClick={this.previousPhoto}>
+                        <span className="previous" >{"<"}</span>
+                    </div>
+                    <ul className="place-photos">
+                        {this.front_photos.map((photo, idx) => {
+                            return (<PhotoItem photo={photo} idx={idx} key={photo.id} author={this.props.authors[photo.user_id]} />)
+                        })}
+                    </ul>
+                    <div className="next-container" onClick={this.nextPhoto}>
+                        <span className="next">{">"}</span>
+                    </div>
                 </div>
-                <ul className="place-photos">
-                    {this.front_photos.map((photo, idx) => {
-                        return (<PhotoItem photo={photo} idx={idx} key={photo.id} />)
-                    })}
-                </ul>
-                <div className="next-container" onClick={this.nextPhoto}>
-                    <span className="next">{">"}</span>
-                </div>
+                <Link to={this.place} className="photo-create">Add Photo</Link>
             </div>
         )
     }

@@ -7,6 +7,7 @@ import UserShowContainer from './user_show_container';
 import ReviewFormContainer from './review_form_container';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
+import PhotoFormContainer from './photo_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import {Link, withRouter} from 'react-router-dom';
 import {Switch, Route} from 'react-router';
@@ -193,6 +194,7 @@ class Search extends React.Component {
                         <ProtectedRoute path="/reviews/new/:id" component={ReviewFormContainer} />
                         <AuthRoute path="/login" component={LoginFormContainer} />
                         <AuthRoute path="/signup" component={SignupFormContainer} />
+                        <ProtectedRoute path="/photos/new/:id" component={PhotoFormContainer} />
                     </Switch>
                 </div>
         )

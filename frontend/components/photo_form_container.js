@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
-import ReviewForm from './review_form';
+import PhotoForm from './photo_form';
+import {createPhoto} from '../actions/photo_actions';
 import {fetchPlaces} from '../actions/place_actions';
-import {createReview} from '../actions/review_actions';
 
 const mapStateToProps = (state, ownProps) => {
     let place_id = ownProps.match.params.id
@@ -10,12 +10,12 @@ const mapStateToProps = (state, ownProps) => {
         places: state.entities.places,
         user_id: state.session.id,
         errors: state.errors.regular
-    })
+})
 };
 
 const mapDispatchToProps = dispatch => ({
     fetchPlaces: () => dispatch(fetchPlaces()),
-    createReview: (review) => dispatch(createReview(review))
+    createPhoto: (photo) => dispatch(createPhoto(photo))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoForm);

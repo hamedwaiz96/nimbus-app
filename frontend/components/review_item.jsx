@@ -8,13 +8,20 @@ class ReviewItem extends React.Component {
     }
 
     render() {
+        this.rating = 'rating-body-review rating' + Math.round(this.props.review.rating).toString()
         return (
             <li className="review-item">
-                <img className="review-user-photo" src={this.props.author.image} alt={this.props.author.username} height="50" width="50" />
-                <Link to={this.user_link}>{this.props.author.username}</Link>
-                <div className="review-user-info">
-                    <span className="fa fa-star review-count"> {this.props.author.review_count} reviews</span> <br/>
-                    <span className="fa fa-camera photo-count ">{this.props.author.photo_count} photos</span>
+                <div className="review-item-details">
+                    <img className="review-user-photo" src={this.props.author.image} alt={this.props.author.username} height="50" width="50" />
+                    <div className="review-user-details">
+                        <Link to={this.user_link}>{this.props.author.username}</Link>
+                        <span className="fa fa-star review-count"> {this.props.author.review_count} reviews</span>
+                        <span className="fa fa-camera photo-count "> {this.props.author.photo_count} photos</span>
+                    </div>
+                </div>
+                <div className="rating-body">
+                    <div className={this.rating}></div>
+                    <p className="rating-body-par"><q>{this.props.review.body}</q></p>
                 </div>
             </li>
         )

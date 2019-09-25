@@ -14,13 +14,13 @@ export const getReviews = (reviews, place_id) => {
 
 export const getUsers = (users, filtered_reviews) => {
     let author_ids = [];
-    let new_users = [];
+    let new_users = {};
     for(var i = 0; i <= filtered_reviews.length - 1; i++){
-        author_ids.push(filtered_reviews[i].user_id)
+        author_ids.push(filtered_reviews[i].author_id)
     }
     for(var j in users){
         if (author_ids.includes(users[j].id)){
-            new_users.push(users[j])
+            new_users[users[j].id] = users[j]
         }
     }
     return new_users;
