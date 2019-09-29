@@ -607,3 +607,7 @@ hr {
 .black-bar:hover {
     text-decoration: underline;
 }
+
+.place-photo-item:hover {
+    cursor:pointer
+}
