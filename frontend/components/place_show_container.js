@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => ({
     place: state.entities.places[parseInt(ownProps.match.params.id)],
     authors: getUsers(state.entities.users, getReviews(state.entities.reviews, parseInt(ownProps.match.params.id))),
     reviews: getReviews(state.entities.reviews, parseInt(ownProps.match.params.id)),
-    photos: getPhotos(state.entities.photos, parseInt(ownProps.match.params.id))
+    photos: getPhotos(state.entities.photos, parseInt(ownProps.match.params.id)),
+    session_id: state.session.id
 });
 
 const mapDispatchToProps = dispatch => ({

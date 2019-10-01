@@ -406,6 +406,9 @@ body {
 .place-photos-container {
     text-align: center;
     margin-bottom: 10px;
+}
+
+.photos-user {
     display: flex;
     justify-content: center;
 }
@@ -424,19 +427,31 @@ body {
     margin: 0 10px;
 }
 
+.photo-form > input {
+    width: 158px;
+}
+
+.photo-form-container {
+    display: none;
+}
+
 
 .place-photo-item {
     border-radius: 5px;
     width: 100px;
     height: 100px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-/* .place-photo-item-container:first-of-type {
-     margin-left: 0;
+.photo-create:hover {
+    cursor: pointer;
 }
-.place-photo-item-container:last-of-type {
-    margin-right: 0;
-} */
 
 .previous-container, .next-container {
     width: 16%;
@@ -446,6 +461,16 @@ body {
     font-weight: 700;
     color: white;
     line-height: 100px;
+}
+
+.previous, .next {
+    -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .next-container {
@@ -685,4 +710,8 @@ hr {
 
 .hide-tag:after {
     content: none;
+}
+
+.previous-container:focus, .next-container:focus, .next:focus, .previous:focus {
+    outline: none !important;
 }

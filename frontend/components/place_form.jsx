@@ -67,7 +67,7 @@ class PlaceForm extends React.Component {
         let Formdata = new FormData();
         Formdata.append('file', this.file);
         Formdata.append('upload_preset', CLOUDINARY_PRESET)
-        Formdata.append('folder', "nimbus/places/photos")
+        Formdata.append('folder', "nimbus/places/main-photos")
         if (this.state.name != "" && this.state.hours != ""){
             axios({
                 url: CLOUDINARY_IMAGE_URL,

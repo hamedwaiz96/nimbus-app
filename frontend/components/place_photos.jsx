@@ -1,5 +1,6 @@
 import React from 'react';
 import PhotoItem from './photo_item';
+import PhotoFormContainer from './photo_form_container';
 import {Link} from 'react-router-dom';
 
 class PlacePhotos extends React.Component {
@@ -35,12 +36,30 @@ class PlacePhotos extends React.Component {
         }
     }
 
+    toggleForm(e) {
+        e.preventDefault();
+        $('.photo-form-container').toggle();
+    }
+
     render(){
         this.place = `/photos/new/${this.props.place.id}`
         if (this.props.photos.length <= 4) {
             this.front_photos = this.props.photos
         } else {
             this.front_photos = this.props.photos.slice(this.state.start, this.state.last)
+        }
+        let show;
+        if (this.props.session !== null){
+            show = (
+                <div className="photo-create-container">
+                    <button className="photo-create" onClick={this.toggleForm} >Add Photo</button>
+                    <PhotoFormContainer className="photo-form-container" place_id={this.props.place.id} />
+                </div>
+            )
+        } else {
+            show = (
+                <p><Link to="/login">Login to Add Photo</Link></p>
+            )
         }
         return(
             <div className='place-photos-container'>
@@ -57,7 +76,7 @@ class PlacePhotos extends React.Component {
                         <span className="next">{">"}</span>
                     </div>
                 </div>
-                <Link to={this.place} className="photo-create">Add Photo</Link>
+                {show}
             </div>
         )
     }

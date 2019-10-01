@@ -28,7 +28,7 @@ class PlaceShow extends React.Component {
             this.rating = 'rating' + Math.round(this.props.place.average_rating).toString()
             show = (
                 <div className="place-show">
-                    <PlacePhotos photos={this.props.photos} authors={this.props.authors} place={this.props.place} />
+                    <PlacePhotos photos={this.props.photos} authors={this.props.authors} place={this.props.place} session={this.props.session_id} />
                     <hr/>
                     <div className="place-show-details">
                         <h1>{this.props.place.name}</h1>

@@ -6,7 +6,7 @@ class PlacePhotosForUser extends React.Component {
         super(props);
         this.state = {
             start: 0,
-            last: 4
+            last: 3
         }
         if (this.props.photos != []) {
             this.photos = this.props.photos
@@ -18,7 +18,7 @@ class PlacePhotosForUser extends React.Component {
     }
 
     previousPhoto() {
-        if (this.photos.length <= 4) {
+        if (this.photos.length <= 3) {
             this.setState(this.state)
         }
         else if (this.state.start === 0) {
@@ -29,7 +29,7 @@ class PlacePhotosForUser extends React.Component {
     }
 
     nextPhoto() {
-        if (this.photos.length <= 4) {
+        if (this.photos.length <= 3) {
             this.setState(this.state)
         }
         else if (this.state.last === this.photos.length) {
@@ -45,13 +45,13 @@ class PlacePhotosForUser extends React.Component {
                 ""
             )
         }
-        else if (this.photos.length <= 4) {
+        else if (this.photos.length <= 3) {
             this.front_photos = this.photos
         } else {
-            this.photos = this.photos.slice(this.state.start, this.state.last)
+            this.front_photos = this.photos.slice(this.state.start, this.state.last)
         }
         return (
-            <div className='place-photos-container'>
+            <div className='place-photos-container photos-user'>
                 <div className="previous-container" onClick={this.previousPhoto}>
                     <span className="previous" >{"<"}</span>
                 </div>
