@@ -368,6 +368,14 @@ body {
     margin-left: 5px;
 }
 
+.place-show-review-container {
+    width: 250px;
+}
+
+.rating-date-number {
+    padding-left: 5px;
+}
+
 .review-user-info {
     font-size: 12px;
 
@@ -398,6 +406,8 @@ body {
 .place-photos-container {
     text-align: center;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 .place-photos-block {
@@ -471,6 +481,59 @@ hr {
 
 .user-show-review-list {
     list-style: none;
+    padding: 0;
+}
+
+.user-show-reviews-list-item {
+    padding: 0;
+}
+
+.user-show-side {
+    padding-bottom: 10px;
+}
+
+.user-show-photo {
+    border-radius: 5px;
+}
+
+.user-show-place-link {
+    color: black;
+    text-decoration: none;
+}
+
+.user-show-place-link:active {
+    color: black;
+    text-decoration: none;
+}
+
+.user-show-place-link > img {
+    border-radius: 5px;
+}
+
+.user-show-place-link > h2 {
+    width: 250px;
+}
+
+.user-show-place-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-reviews-show-list-item {
+    border-bottom: 1px solid lightgrey;
+    padding-top: 10px;
+}
+
+.user-reviews-show-list-item:last-of-type {
+    border: none;
+}
+
+.user-show-container {
+    width: 100%;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 10px;
 }
 
 .rating-sprite {
@@ -479,6 +542,13 @@ hr {
     direction: rtl;
     justify-content: flex-end;
     /* margin-left: 10%; */
+}
+
+.rating-date {
+    display: flex;
+    align-items: flex-end;
+    width: 200px;
+    margin: auto;
 }
 
 .rating-sprite > li {
@@ -610,4 +680,8 @@ hr {
 
 .place-photo-item:hover {
     cursor:pointer
+}
+
+.hide-tag:after {
+    content: none;
 }

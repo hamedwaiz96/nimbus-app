@@ -23,7 +23,6 @@ class PlaceShow extends React.Component {
     }
 
     render(){
-        console.log(this.props.authors);
         let show;
         if(this.state.isLoaded === true){
             this.rating = 'rating' + Math.round(this.props.place.average_rating).toString()

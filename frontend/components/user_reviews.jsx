@@ -1,5 +1,6 @@
 import React from 'react';
 import PlacePhotosForUser from './place_photos_for_user';
+import {Link} from 'react-router-dom';
 
 class UserReviews extends React.Component {
     constructor(props){
@@ -23,6 +24,7 @@ class UserReviews extends React.Component {
             if (place.id === this.props.review.place_id) {
                 this.place = place;
                 this.image = this.place.photo
+                this.place_url = `/places/${this.place.id}`
             }
         })
         this.convertTime();
@@ -30,15 +32,18 @@ class UserReviews extends React.Component {
             <li className="user-reviews-show-list-item">
                 <div className="user-show-place-container">
                     <div className="user-show-place">
-                        <img src={this.image} alt="Place Photo" height="200" width="200"/>
+                        <Link to={this.place_url} className="user-show-place-link">
+                            <h2>{this.place.name}</h2>
+                            <img src={this.image} alt="Place Photo" height="200" width="200" />
+                        </Link>
                         <div className="user-show-place-details">
-                            <p className="price">My Price Rating: {this.price}</p>
+                            <p className="price hide-tag">My Price Rating: {this.price}</p>
                         </div>
                     </div>
                     <div className="place-show-review-container">
                         <div className="rating-date">
                             <div className={this.review_count}></div>
-                            <span>{this.date}</span>
+                            <span className="rating-date-number">{this.date}</span>
                         </div>
                         <p><q>{this.props.review.body}</q></p>
                         <PlacePhotosForUser photos={this.props.photos[this.place.id]} place={this.place} />

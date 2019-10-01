@@ -31,8 +31,9 @@ class UserShow extends React.Component {
                             <span className="fa fa-camera photo-count ">{this.props.user.photo_count} photos</span>
                         </div>
                     </div>
+                    <hr />
                     <div className="user-reviews" >
-                        <h2>Reviews</h2>
+                        <h1>Reviews</h1>
                         <ul className="user-show-review-list">
                             {this.props.reviews.map((review) => {
                                 return (
