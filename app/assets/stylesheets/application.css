@@ -656,13 +656,14 @@ hr {
   bottom: 0;
   background-color: rgba(0,0,0,0.6);
   z-index: 2;
+  padding-top: 10px;
 }
 
 #overlay-image {
-    width: 75%;
-    height: 75%;
-    margin-left: 10%;
-    margin-top: 10%;
+   width: 50%;
+    margin-left: auto;
+    display: block;
+    margin-right: auto;
 }
 
 .black-bar {

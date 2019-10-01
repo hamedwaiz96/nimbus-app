@@ -57,7 +57,7 @@ class PlacePhotosForUser extends React.Component {
                 </div>
                 <ul className="place-photos">
                     {this.front_photos.map((photo, idx) => {
-                        return (<PhotoItem photo={photo} idx={idx} key={photo.id} />)
+                        return (<PhotoItem photo={photo} idx={idx} key={photo.id} author={this.props.author} />)
                     })}
                 </ul>
                 <div className="next-container" onClick={this.nextPhoto}>
