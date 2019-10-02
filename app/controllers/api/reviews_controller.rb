@@ -4,7 +4,7 @@ class Api::ReviewsController < ApplicationController
     def create
         @review = current_user.reviews.new(review_params)
         if @review.save
-            render 'api/reviews/show.json.builder'
+            render 'api/reviews/show.json.jbuilder'
         else
             render json: @review.errors.full_messages, status: 422
         end

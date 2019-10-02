@@ -16,7 +16,7 @@ class PlaceForm extends React.Component {
         this.state = {
             name: '',
             photo: '',
-            location: 'Central City',
+            location: '',
             hours: '',
             user_id: this.props.user_id,
             tags: []
@@ -80,6 +80,7 @@ class PlaceForm extends React.Component {
                 (res) => {
                     self.state.photo = res.data.secure_url;
                     self.props.createPlace(self.state).then((whole) => {
+                        console.log(whole);
                         self.props.history.push(`/places/${whole.place.id}`)
                     })
                 },
@@ -142,44 +143,45 @@ class PlaceForm extends React.Component {
                     {this.errors()}
                 </ul>
                 <form onSubmit={this.handleSubmit} className="place-form">
-                    <label className="place-name">
-                        Name:
-                    <input type="text" value={this.state.name} onChange={this.update('name')} />
-                    </label>
+                    <div className="form-container">
+                        <p>Name:</p>
+                        <input className="name-input" placeholder="Place Name" type="text" value={this.state.name} onChange={this.update('name')} />
+                    </div>
                     <br/>
-                    <label className="place-location">
-                        Location:
-                    <select name="location" onChange={this.update('location')} defaultValue="Central City">
+                    <div className="form-container">
+                        <p>Select Location:</p>
+                        <select name="location" defaultValue="Select Location" onChange={this.update('location')}>
+                            <option value="Select Location" disabled>Select Location</option>
                             <option value="Central City">Central City</option>
                             <option value="East City">East City</option>
                             <option value="Papaya Island">Papaya Island</option>
                             <option value="West City">West City</option>
                         </select>
-                    </label>
+                    </div>
                     <br/>
-                    <label className="place-hours">
-                        Hours:
-                    <input className="from-time" type="time" /> to <input className="to-time" type="time" />
-                    </label>
+                    <div className="form-container">
+                        <p>Choose Hours:</p>
+                        <input className="from-time" type="time" /> to <input className="to-time" type="time" />
+                    </div>
                     <br/>
-                    <label className="place-photo">
-                        Photo:
+                    <div className="form-container">
+                        <p>Photo:</p>
                     <input type="file" onChange={this.fileChangeHandler} />
-                    </label>
+                    </div>
                     <br/>
-                    <label>
-                        Tags:
-                        <div className="tag-labels">
-                            <label><input type="checkbox" name="tag" value="Temple" onChange={this.updatecheck('tags', "1")} /> Temple</label>
-                            <label><input type="checkbox" name="tag" value="Food" onChange={this.updatecheck('tags', "2")} /> Food</label>
-                            <label><input type="checkbox" name="tag" value="TV" onChange={this.updatecheck('tags', "3")} /> TV</label>
-                            <label><input type="checkbox" name="tag" value="Nature" onChange={this.updatecheck('tags', "4")} /> Nature</label>
-                            <br />
-                            <label><input type="checkbox" name="tag" value="Technical" onChange={this.updatecheck('tags', "5")} /> Technical</label>
-                            <label><input type="checkbox" name="tag" value="Park" onChange={this.updatecheck('tags', "6")} /> Park</label>
-                            <label> <input type="checkbox" name="tag" value="Historical" onChange={this.updatecheck('tags', "7")} /> Historical</label>
-                        </div>
-                    </label>
+                    <div className="form-container">
+                        <p>Tags:</p>
+                        <ul className="ks-cboxtags">
+                            <li><input id="Temple" type="checkbox" name="tag" value="Temple" onChange={this.updatecheck('tags', "1")} /> <label htmlFor="Temple">Temple</label></li>
+                            <li><input id="Food" type="checkbox" name="tag" value="Food" onChange={this.updatecheck('tags', "2")} /> <label htmlFor="Food">Food</label></li>
+                            <li><input id="TV" type="checkbox" name="tag" value="TV" onChange={this.updatecheck('tags', "3")} /> <label htmlFor="TV">TV</label></li>
+                            <li><input id="Nature" type="checkbox" name="tag" value="Nature" onChange={this.updatecheck('tags', "4")} /> <label htmlFor="Nature">Nature</label></li>
+                            <br/>
+                            <li><input id="Technical" type="checkbox" name="tag" value="Technical" onChange={this.updatecheck('tags', "5")} /> <label htmlFor="Technical">Technical</label></li>
+                            <li><input id="Park" type="checkbox" name="tag" value="Park" onChange={this.updatecheck('tags', "6")} /> <label htmlFor="Park">Park</label></li>
+                            <li> <input id="Historical" type="checkbox" name="tag" value="Historical" onChange={this.updatecheck('tags', "7")} /> <label htmlFor="Historical">Historical</label></li>
+                        </ul>
+                    </div>
                     <br/>
                     <input type="submit" value="Create Place" />
                 </form>

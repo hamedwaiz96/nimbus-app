@@ -39,9 +39,9 @@ export const fetchPlaces = (filter) => dispatch => {
 
 export const fetchPlace = (id) => dispatch => {
     dispatch(startLoadingPlace());
-    return APIUtil.fetchPlace(id).then((whole) => {dispatch(receivePlace(whole))})
+    return APIUtil.fetchPlace(id).then((whole) => {dispatch(receivePlace(whole)); return whole.place})
 };
 
 export const createPlace = (place) => dispatch => (
-    APIUtil.createPlace(place).then((place) => dispatch(receivePlace(place)), (err) => dispatch(receiveErrors(err)))
+    APIUtil.createPlace(place).then((place) => {dispatch(receivePlace(place)); return place}, (err) => dispatch(receiveErrors(err)))
 );

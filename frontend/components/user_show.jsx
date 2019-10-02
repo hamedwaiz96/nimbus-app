@@ -21,8 +21,6 @@ class UserShow extends React.Component {
         return
     }
 
-
-
     render(){
         if(this.state.isLoading){
             return(
