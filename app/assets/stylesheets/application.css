@@ -693,6 +693,28 @@ hr {
     cursor:pointer
 }
 
+/* .place-form {
+    text-align: center;
+    width: 50%;
+    margin: auto;
+} */
+
+.place-form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: scroll;
+    margin: auto;
+}
+/* 
+.place-form > label {
+    display: flex;
+    justify-content: space-evenly;
+} */
+
 .hide-tag:after {
     content: none;
 }
