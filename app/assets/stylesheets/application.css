@@ -440,17 +440,12 @@ body {
     border-radius: 5px;
     width: 100px;
     height: 100px;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
-.photo-create:hover {
+.place-item-write:hover, .photo-create:hover {
     cursor: pointer;
+    background-color: #50c878;
+    color: black;
 }
 
 .previous-container, .next-container {
@@ -461,16 +456,6 @@ body {
     font-weight: 700;
     color: white;
     line-height: 100px;
-}
-
-.previous, .next {
-    -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .next-container {
@@ -712,6 +697,21 @@ hr {
     content: none;
 }
 
-.previous-container:focus, .next-container:focus, .next:focus, .previous:focus {
+.previous-container:focus, .next-container:focus, .next:focus, .previous:focus, .photo-create:focus {
     outline: none !important;
+}
+
+.cancel:hover {
+    background-color: #ff7070;
+    color: white;
+}
+
+.no-highlight {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }

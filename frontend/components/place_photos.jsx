@@ -8,10 +8,13 @@ class PlacePhotos extends React.Component {
         super(props);
         this.state = {
             start: 0,
-            last: 4
+            last: 4,
+            toggleValue: 'Add Photo'
         }
         this.previousPhoto = this.previousPhoto.bind(this);
         this.nextPhoto = this.nextPhoto.bind(this);
+        this.toggleForm = this.toggleForm.bind(this);
+        this.toggleValueP = this.toggleValueP.bind(this);
     }
 
     previousPhoto() {
@@ -39,6 +42,17 @@ class PlacePhotos extends React.Component {
     toggleForm(e) {
         e.preventDefault();
         $('.photo-form-container').toggle();
+        this.toggleValueP();
+    }
+
+    toggleValueP() {
+        if (this.state.toggleValue === "Add Photo") {
+            $(".photo-create").toggleClass("cancel")
+            this.setState({toggleValue: "Cancel"})
+        } else {
+            $(".photo-create").toggleClass("cancel")
+            this.setState({toggleValue: 'Add Photo'})
+        }
     }
 
     render(){
@@ -52,7 +66,7 @@ class PlacePhotos extends React.Component {
         if (this.props.session !== null){
             show = (
                 <div className="photo-create-container">
-                    <button className="photo-create" onClick={this.toggleForm} >Add Photo</button>
+                    <button className="photo-create" onClick={this.toggleForm} >{this.state.toggleValue}</button>
                     <PhotoFormContainer className="photo-form-container" place_id={this.props.place.id} />
                 </div>
             )

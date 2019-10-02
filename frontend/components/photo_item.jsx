@@ -24,7 +24,7 @@ class PhotoItem extends React.Component {
     render(){
         return(
             <li className="place-photo-item-container">
-                <img className="place-photo-item" src={this.props.photo.url} onClick={this.overlayimage} alt=""/>
+                <img className="place-photo-item no-highlight" src={this.props.photo.url} onClick={this.overlayimage} alt=""/>
             </li>
         )
     }

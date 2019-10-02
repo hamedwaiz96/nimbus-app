@@ -53,7 +53,7 @@ class PlacePhotosForUser extends React.Component {
         return (
             <div className='place-photos-container photos-user'>
                 <div className="previous-container" onClick={this.previousPhoto}>
-                    <span className="previous" >{"<"}</span>
+                    <span className="previous no-highlight" >{"<"}</span>
                 </div>
                 <ul className="place-photos">
                     {this.front_photos.map((photo, idx) => {
@@ -61,7 +61,7 @@ class PlacePhotosForUser extends React.Component {
                     })}
                 </ul>
                 <div className="next-container" onClick={this.nextPhoto}>
-                    <span className="next">{">"}</span>
+                    <span className="next no-highlight">{">"}</span>
                 </div>
             </div>
         )
