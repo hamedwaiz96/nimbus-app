@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import UserShow from './user_show';
-import {fetchUser} from '../actions/user_actions';
+import {fetchUser, updateUserPhoto} from '../actions/user_actions';
 import { getReviewsForUser, getPlacesForUser, getPhotosFiltered} from './selector';
 
 const mapStateToProps = (state, ownProps) => {
@@ -12,12 +12,14 @@ const mapStateToProps = (state, ownProps) => {
         reviews,
         user: state.entities.users[user_id],
         places,
-        photos: getPhotosFiltered(state.entities.photos, user_id, places)
+        photos: getPhotosFiltered(state.entities.photos, user_id, places),
+        session_id: state.session.id
     })
 };
 
 const mapDispatchToProps = dispatch => ({
     fetchUser: (id) => dispatch(fetchUser(id)),
+    updateUserPhoto: (id, photo) => dispatch(updateUserPhoto(id, photo))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);

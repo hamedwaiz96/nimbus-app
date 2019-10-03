@@ -16,3 +16,8 @@ export const fetchUser = (id) => dispatch => {
     dispatch(startLoadingUser());
     return APIUtil.fetchUser(id).then((whole) => dispatch(receiveUser(whole)))
 }
+
+export const updateUserPhoto = (id, photo) => dispatch => {
+    dispatch(startLoadingUser());
+    return APIUtil.updateUser(id, photo).then(whole => dispatch(receiveUser(whole)))
+}

@@ -4,7 +4,6 @@ import {withRouter, Link} from 'react-router-dom';
 class PhotoItem extends React.Component {
     constructor(props){
         super(props);
-        console.log(this.props.author)
         this.overlayimage = this.overlayimage.bind(this);
     }
 

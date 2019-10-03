@@ -446,7 +446,7 @@ body {
     width: 158px;
 }
 
-.photo-form-container {
+.photo-form-container, .photo-change-form {
     display: none;
 }
 
@@ -457,7 +457,7 @@ body {
     height: 100px;
 }
 
-.place-item-write:hover, .photo-create:hover {
+.place-item-write:hover, .photo-create:hover, .photo-change-button:hover {
     cursor: pointer;
     background-color: #50c878;
     color: white;
@@ -515,6 +515,10 @@ hr {
 
 .user-show-side {
     padding-bottom: 10px;
+}
+
+.user-show-side-details {
+    margin-bottom: 10px;
 }
 
 .user-show-photo {
@@ -716,7 +720,7 @@ hr {
     color: white;
 }
 
-.place-item-write, .photo-create {
+.place-item-write, .photo-create, .photo-change-button {
     text-decoration: none;
     color: black;
     border: 1px solid black;
@@ -834,13 +838,17 @@ hr {
     content: none;
 }
 
-.previous-container:focus, .next-container:focus, .next:focus, .previous:focus, .photo-create:focus {
+.previous-container:focus, .next-container:focus, .next:focus, .previous:focus, .photo-create:focus, .photo-change-button:focus {
     outline: none !important;
 }
 
 .cancel:hover {
     background-color: #ff7070;
     color: white;
+}
+
+.photo-change-form > input[type='file'] {
+    width: 158px;
 }
 
 .no-highlight {
