@@ -55,6 +55,7 @@ class PhotoForm extends React.Component {
                 self.state.url = res.data.secure_url;
                 self.props.createPhoto(self.state).then(() => {
                     $('.photo-form-container').toggle();
+                    self.props.toggleValueP();
                 })
             },
             (err) => {

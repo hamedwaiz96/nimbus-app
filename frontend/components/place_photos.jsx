@@ -67,7 +67,7 @@ class PlacePhotos extends React.Component {
             show = (
                 <div className="photo-create-container">
                     <button className="photo-create" onClick={this.toggleForm} >{this.state.toggleValue}</button>
-                    <PhotoFormContainer className="photo-form-container" place_id={this.props.place.id} />
+                    <PhotoFormContainer toggleValueP={this.toggleValueP} className="photo-form-container" place_id={this.props.place.id} />
                 </div>
             )
         } else {
