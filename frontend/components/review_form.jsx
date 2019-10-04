@@ -25,7 +25,7 @@ class ReviewForm extends React.Component {
         if (this.props.errors) {
             return (
                 this.props.errors.map(error => {
-                    return (<li className="error" key={error}>{error}</li>);
+                    return (<li className="error alert alert-danger fade" key={error}>{error}</li>);
                 })
             );
         }
@@ -33,11 +33,16 @@ class ReviewForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createReview(this.state).then((review) => {
+        this.props.createReview(this.state).then(
+            (review) => {
             let values = Object.values(review)[0]
             console.log(values);
             this.props.history.push(`/places/${values.place_id}`)
-        });
+        }, (err) => {
+            debugger;
+            this.props.receiveErrors(err.err);
+        }
+        );
     }
 
     update(key){
@@ -72,41 +77,42 @@ class ReviewForm extends React.Component {
 
     render(){
         return(
-            <div className="review-form-container">
+            <div>
                 <ul className="error-list">
                     {this.errors()}
                 </ul>
-                <h1>New Review</h1>
-                <form className="review-form" onSubmit={this.handleSubmit}>
-                    <label className="rating-full">
-                        <p>Rating:</p>
-                        <ul className="rating-sprite">
-                            <li className="rating-sprite-1" onClick={this.updateRating}></li>
-                            <li className="rating-sprite-2" onClick={this.updateRating}></li>
-                            <li className="rating-sprite-3" onClick={this.updateRating}></li>
-                            <li className="rating-sprite-4" onClick={this.updateRating}></li>
-                            <li className="rating-sprite-5" onClick={this.updateRating}></li>
-                        </ul>
-                    </label>
-                    <label className="price-full">
-                        <p>Price:</p>
-                        <ul className="price-sprite">
-                            <li className="price-sprite-1" onClick={this.updatePrice}>$</li>
-                            <li className="price-sprite-2" onClick={this.updatePrice}>$</li>
-                            <li className="price-sprite-3" onClick={this.updatePrice}>$</li>
-                            <li className="price-sprite-4" onClick={this.updatePrice}>$</li>
-                            <li className="price-sprite-5" onClick={this.updatePrice}>$</li>
-                        </ul>
-                    </label>
-                    <div className="review-body" htmlFor="body">
-                        <p>Review (Optional)</p>
-                        <textarea name="body" id="body" cols="30" rows="10" onChange={this.update('body')}>{this.state.body}</textarea>
-                    </div>
-                    
-                    <input type="submit" value="Add Review" />
-                </form>
+                <div className="review-form-container">
+                    <h1>New Review</h1>
+                    <form className="review-form" onSubmit={this.handleSubmit}>
+                        <label className="rating-full">
+                            <p>Rating:</p>
+                            <ul className="rating-sprite">
+                                <li className="rating-sprite-1" onClick={this.updateRating}></li>
+                                <li className="rating-sprite-2" onClick={this.updateRating}></li>
+                                <li className="rating-sprite-3" onClick={this.updateRating}></li>
+                                <li className="rating-sprite-4" onClick={this.updateRating}></li>
+                                <li className="rating-sprite-5" onClick={this.updateRating}></li>
+                            </ul>
+                        </label>
+                        <label className="price-full">
+                            <p>Price:</p>
+                            <ul className="price-sprite">
+                                <li className="price-sprite-1" onClick={this.updatePrice}>$</li>
+                                <li className="price-sprite-2" onClick={this.updatePrice}>$</li>
+                                <li className="price-sprite-3" onClick={this.updatePrice}>$</li>
+                                <li className="price-sprite-4" onClick={this.updatePrice}>$</li>
+                                <li className="price-sprite-5" onClick={this.updatePrice}>$</li>
+                            </ul>
+                        </label>
+                        <div className="review-body" htmlFor="body">
+                            <p>Review (Optional)</p>
+                            <textarea name="body" id="body" cols="30" rows="10" onChange={this.update('body')}>{this.state.body}</textarea>
+                        </div>
+
+                        <input type="submit" value="Add Review" />
+                    </form>
+                </div>
             </div>
-            
         )
     }
 }

@@ -127,7 +127,7 @@ class Search extends React.Component {
         return(
                 <div className="full">
                     <header className="search">
-                    <Link className="place-creator" to="/places/new">Create Place</Link>
+                    <Link className="btn" to="/places/new">Create Place</Link>
                     <div className="search-inside">
                         <Link className="nimbus" to="/">Nimbus</Link>
                         {search}
@@ -138,7 +138,7 @@ class Search extends React.Component {
                     <Switch>
                         <Route exact path="/" render={(props) => (
                             <main className="filter-and-index">
-                                <div onClick={this.toggleHide} className="filter-by">
+                                <div onClick={this.toggleHide} className="filter-by card-3">
                                     <p className="filter-span"></p>
                                     <h3 className="filter-by-header">Add Filters</h3>
                                     <p className="filter-span"></p>

@@ -96,7 +96,7 @@ class SessionForm extends React.Component {
                 <ul className="error-list">
                     {this.props.errors.map((err, idx) => {
                         return(
-                            <li key={idx}>{err}</li>
+                            <li className="alert alert-danger fade" key={idx}>{err}</li>
                         )
                     })}
                 </ul>

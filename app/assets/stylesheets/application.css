@@ -143,6 +143,7 @@ body {
      border-radius: 5px;
      background: white;
      padding-left: 5px;
+     align-items: center;
  }
 
  .place-item:hover {
@@ -312,7 +313,6 @@ body {
  }
 
  .filter {
-     border-bottom: 1px solid lightgrey;
      width: 100%;
  }
  .filter-inside {
@@ -329,6 +329,7 @@ body {
      font-family: 'Roboto', sans-serif;
      overflow: hidden;
      transition: height 0.4s ease-in;
+     border-bottom: 1px solid lightgrey;
  }
 
  .filter-by {
@@ -341,7 +342,6 @@ body {
      background: #ededed;
      border-radius: 5px 5px;
      color: black;
-     box-shadow: 5px 5px 5px grey;
      border-bottom: 1px solid pink;
      display: flex;
      justify-content: space-around;
@@ -405,6 +405,7 @@ body {
 
  .filter-inside.hide {
     height: 0;
+    border-bottom: none;
     transition: height 0.4s ease-in;
  }
 
@@ -427,6 +428,8 @@ body {
     color: grey;
     margin-bottom: 10px;
     justify-content: center;
+    width: 200px;
+    margin: auto;
  }
 
  .review-photo {
@@ -465,7 +468,7 @@ body {
      margin-right: 3px;
  }
 
- .login:hover, .signup:hover, .place-creator:hover {
+ .login:hover, .signup:hover, .btn:hover {
     color: white;
     background: purple;
     cursor: pointer;
@@ -549,7 +552,6 @@ body {
 .place-photos-container {
     text-align: center;
     margin-bottom: 10px;
-    margin-top: 5px;
 }
 
 .photos-user {
@@ -575,7 +577,11 @@ body {
     width: 158px;
 }
 
-.photo-form-container, .photo-change-form {
+.photo-change-form {
+    display: none;
+}
+
+.upload-file {
     display: none;
 }
 
@@ -586,10 +592,14 @@ body {
     height: 100px;
 }
 
-.place-item-write:hover, .photo-create:hover, .photo-change-button:hover {
+.photo-create:hover, .photo-change-button:hover {
     cursor: pointer;
     background-color: #50c878;
     color: white;
+}
+
+.place-item:first-of-type {
+    margin-top: 5px;
 }
 
 .previous-container, .next-container {
@@ -619,7 +629,7 @@ hr {
     margin:0;
 }
 
-.place-creator {
+.btn {
     font-family: 'Roboto', sans-serif;
     color: black;
     text-decoration: none;
@@ -629,8 +639,19 @@ hr {
     /* justify-self: flex-end; */
 }
 
+.btn--round {
+    border-radius: 5px 5px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
 .error-list {
-    background: green;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 5px;
 }
 
 .user-show-review-list {
@@ -1028,4 +1049,20 @@ hr {
     -ms-user-select: none;
     user-select: none;
     outline: none !important;
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }

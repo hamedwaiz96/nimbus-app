@@ -28,7 +28,7 @@ class PlaceShow extends React.Component {
             this.rating = 'rating' + Math.round(this.props.place.average_rating).toString()
             show = (
                 <div className="place-show">
-                    <PlacePhotos photos={this.props.photos} authors={this.props.authors} place={this.props.place} session={this.props.session_id} />
+                    <PlacePhotos place_id={this.props.place_id} user_id={this.props.user_id} errors={this.props.errors} places={this.props.places} fetchPlaces={this.props.fetchPlaces} createPhoto={this.props.createPhoto} receiveErrors={this.props.receiveErrors} photos={this.props.photos} authors={this.props.authors} place={this.props.place} session={this.props.session_id} />
                     <hr/>
                     <div className="place-show-details">
                         <h1>{this.props.place.name}</h1>
@@ -37,7 +37,7 @@ class PlaceShow extends React.Component {
                             <div className={this.rating}></div>
                             <span className="place-show-review-count">{this.props.place.review_count} Reviews</span>
                         </div>
-                        <Link className="place-item-write" to={this.link}>Write a Review</Link>
+                        <Link className="btn btn--round" to={this.link}>Write a Review</Link>
                     </div>
                     <hr/>
                     <ul className="review-items">

@@ -26,7 +26,7 @@ class PhotoForm extends React.Component {
         if (this.props.errors) {
             return (
                 this.props.errors.map(error => {
-                    return (<li className="error" key={error}>{error}</li>);
+                    return (<li className="error alert alert-danger fade" key={error}>{error}</li>);
                 })
             );
         }

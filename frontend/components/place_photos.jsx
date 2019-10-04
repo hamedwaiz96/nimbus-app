@@ -1,7 +1,10 @@
 import React from 'react';
 import PhotoItem from './photo_item';
 import PhotoFormContainer from './photo_form_container';
+import axios from 'axios';
 import {Link} from 'react-router-dom';
+
+import { CLOUDINARY_IMAGE_URL, CLOUDINARY_PRESET } from '../util/cloudinary_info';
 
 class PlacePhotos extends React.Component {
     constructor(props){
@@ -9,12 +12,15 @@ class PlacePhotos extends React.Component {
         this.state = {
             start: 0,
             last: 4,
-            toggleValue: 'Add Photo'
+            url: "",
+            place_id: this.props.place_id,
+            user_id: this.props.user_id,
+            visible: "",
+            opacity: 0
         }
         this.previousPhoto = this.previousPhoto.bind(this);
         this.nextPhoto = this.nextPhoto.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
-        this.toggleValueP = this.toggleValueP.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     previousPhoto() {
@@ -39,19 +45,46 @@ class PlacePhotos extends React.Component {
         }
     }
 
-    toggleForm(e) {
+    handleSubmit(e) {
         e.preventDefault();
-        $('.photo-form-container').toggle();
-        this.toggleValueP();
+        const self = this;
+        this.file = e.target.files[0]
+        let Formdata = new FormData();
+        Formdata.append('file', this.file);
+        Formdata.append('upload_preset', CLOUDINARY_PRESET)
+        Formdata.append('folder', 'nimbus/places/photos')
+        axios({
+            url: CLOUDINARY_IMAGE_URL,
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data: Formdata
+        }).then(
+            (res) => {
+                self.state.url = res.data.secure_url;
+                self.props.createPhoto({
+                    url: self.state.url,
+                    place_id: self.state.place_id,
+                    user_id: self.state.user_id
+                }).then(() => {
+                    self.setState({visible: "Sucessfully Uploaded Images", opacity: 1})
+                    setTimeout(function () { self.setState({visible: "", opacity: 0}) }, 5000);
+                })
+            },
+            (err) => {
+                this.props.receiveErrors(err);
+            }
+        )
     }
 
-    toggleValueP() {
-        if (this.state.toggleValue === "Add Photo") {
-            $(".photo-create").toggleClass("cancel")
-            this.setState({toggleValue: "Cancel"})
-        } else {
-            $(".photo-create").toggleClass("cancel")
-            this.setState({toggleValue: 'Add Photo'})
+    errors() {
+        if (this.props.errors) {
+            return (
+                this.props.errors.map(error => {
+                    return (<li className="error alert alert-danger" key={error}>{error}</li>);
+                })
+            );
         }
     }
 
@@ -66,8 +99,10 @@ class PlacePhotos extends React.Component {
         if (this.props.session !== null){
             show = (
                 <div className="photo-create-container">
-                    <button className="photo-create" onClick={this.toggleForm} >{this.state.toggleValue}</button>
-                    <PhotoFormContainer toggleValueP={this.toggleValueP} className="photo-form-container" place_id={this.props.place.id} />
+                    <label htmlFor="upload">
+                        <span className="btn btn--round">Add Photo</span>
+                        <input className="upload-file" type="file" id="upload" onChange={this.handleSubmit} />
+                    </label>
                 </div>
             )
         } else {
@@ -97,6 +132,10 @@ class PlacePhotos extends React.Component {
         }
         return(
             <div className='place-photos-container'>
+                <ul className="error-list">
+                    {this.errors()}
+                </ul>
+                <div className="alert alert-success fade" style={{opacity: this.state.opacity}}>{this.state.visible}</div>
                 {photo_container}
                 {show}
             </div>

@@ -13,7 +13,7 @@ class PlaceItemIndex extends React.Component {
     render(){
         return(
             <div className="place-item-index-container">
-                <Link className="place-item" to={this.link}>
+                <Link className="place-item card-3" to={this.link}>
                     <img className="main-photo" src={this.props.place.photo} height="100" width="100" alt="" />
                     <div className="place-item-info" >
                         <p className="place-item-name">{this.props.place.name}</p>

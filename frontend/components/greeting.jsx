@@ -29,7 +29,7 @@ class Greeting extends React.Component {
                         <img src={this.props.currentUser.image} alt="" height="35" width="35" />
                         <span className="user-button-arrow"><i className="fa fa-angle-down"></i></span>
                     </button>
-                    <div className="logged-in-details-container">
+                    <div className="logged-in-details-container" style={{display: 'none'}}>
                         <div className="logged-in-details">
                             <span className="details-arrow"></span>
                             <div className="logged-in-details-user">
