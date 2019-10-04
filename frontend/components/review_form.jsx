@@ -39,7 +39,6 @@ class ReviewForm extends React.Component {
             console.log(values);
             this.props.history.push(`/places/${values.place_id}`)
         }, (err) => {
-            debugger;
             this.props.receiveErrors(err.err);
         }
         );

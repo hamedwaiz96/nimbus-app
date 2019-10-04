@@ -11,7 +11,9 @@ class UserShow extends React.Component {
         this.state = {
             isLoading: true,
             toggleValue: "Change Profile Picture",
-            user_image: this.props.user.image
+            user_image: this.props.user.image,
+            visible: "",
+            opacity: 0
         }
         this.props.fetchUser(this.props.user_id).then(() => {
             this.setState({isLoading: false})
@@ -19,8 +21,7 @@ class UserShow extends React.Component {
         this.file = "";
         this.handleSubmit = this.handleSubmit.bind(this);
         this.fileChangeHandler = this.fileChangeHandler.bind(this);
-        this.toggleForm = this.toggleForm.bind(this);
-        this.toggleValueP = this.toggleValueP.bind(this);
+        this.errors = this.errors.bind(this);
     }
 
     hideOverlay(){
@@ -35,6 +36,7 @@ class UserShow extends React.Component {
         e.preventDefault();
         const self = this;
         let Formdata = new FormData();
+        this.file = e.target.files[0];
         Formdata.append('file', this.file);
         Formdata.append('upload_preset', CLOUDINARY_PRESET);
         Formdata.append('folder', 'nimbus/users');
@@ -48,36 +50,29 @@ class UserShow extends React.Component {
         }).then(
             (res) => {
                 self.props.updateUserPhoto(self.props.user_id, res.data.secure_url).then((user) => {
-                    $('.photo-change-form').toggle();
-                    self.toggleValueP();
-                    self.setState({user_image: res.data.secure_url})
+                    self.setState({ visible: "Sucessfully Uploaded Images", opacity: 1, user_image: res.data.secure_url })
+                    setTimeout(function () { self.setState({ visible: "", opacity: 0 }) }, 3000);
                 })
             },
             (err) => {
-                self.props.receiveErrors(err);
+                self.props.receiveErrors(err.err);
             }
         )
-    }
-
-    toggleForm(e) {
-        e.preventDefault();
-        $('.photo-change-form').toggle();
-        this.toggleValueP();
-    }
-
-    toggleValueP() {
-        if (this.state.toggleValue === "Change Profile Picture") {
-            $(".photo-change-button").toggleClass("cancel")
-            this.setState({ toggleValue: "Cancel" })
-        } else {
-            $(".photo-change-button").toggleClass("cancel")
-            this.setState({ toggleValue: 'Change Profile Picture' })
-        }
     }
 
     fileChangeHandler(e) {
         this.file = e.target.files[0]
     } 
+
+    errors() {
+        if (this.props.errors) {
+            return (
+                this.props.errors.map(error => {
+                    return (<li className="error alert alert-danger" key={error}>{error}</li>);
+                })
+            );
+        }
+    }
 
     render(){
         if(this.state.isLoading){
@@ -89,11 +84,10 @@ class UserShow extends React.Component {
             if(this.props.session_id === this.props.user.id) {
                 pictureChange = (
                     <div className="photo-change-form-container">
-                        <button className="photo-change-button" onClick={this.toggleForm}>{this.state.toggleValue}</button>
-                        <form className="photo-change-form" onSubmit={this.handleSubmit}>
-                            <input type="file" onChange={this.fileChangeHandler} />
-                            <input type="submit" />
-                        </form>
+                        <label htmlFor="upload">
+                            <span className="btn btn--round">Change Profile Picture</span>
+                            <input className="upload-file" type="file" id="upload" onChange={this.handleSubmit} />
+                        </label>
                     </div>
                 )
             } else {
@@ -101,6 +95,10 @@ class UserShow extends React.Component {
             }
             return(
                 <div>
+                    <ul className="error-list">
+                        {this.errors()}
+                    </ul>
+                    <div className="alert alert-success fade" style={{ opacity: this.state.opacity }}>{this.state.visible}</div>
                     <div id="overlay" onClick={this.hideOverlay}>
                         <div className="overlay-block">
                             <img id="overlay-image" src="" alt="" onClick={this.nothing}/>

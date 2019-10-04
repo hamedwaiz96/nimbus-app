@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import UserShow from './user_show';
-import {fetchUser, updateUserPhoto} from '../actions/user_actions';
+import {fetchUser, updateUserPhoto, receiveUserImageErrors} from '../actions/user_actions';
 import { getReviewsForUser, getPlacesForUser, getPhotosForUser, getPhotosObject, getReviewsObject} from './selector';
 
 const mapStateToProps = (state, ownProps) => {
@@ -20,7 +20,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     fetchUser: (id) => dispatch(fetchUser(id)),
-    updateUserPhoto: (id, photo) => dispatch(updateUserPhoto(id, photo))
+    updateUserPhoto: (id, photo) => dispatch(updateUserPhoto(id, photo)),
+    receiveErrors: (err) => dispatch(receiveUserImageErrors(err))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserShow);

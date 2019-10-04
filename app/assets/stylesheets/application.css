@@ -1040,6 +1040,10 @@ hr {
     width: 158px;
 }
 
+.alert {
+    text-align: center;
+}
+
 .no-highlight {
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;

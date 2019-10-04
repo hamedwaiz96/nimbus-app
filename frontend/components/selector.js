@@ -92,7 +92,9 @@ export const getPhotosObject = (photos, places) => {
         filtered_photos[places[i].id] = []
     }
     for (var j = 0; j <= photos.length - 1; j++) {
-        filtered_photos[photos[j].place_id].push(photos[j])
+        if(photos[j].place_id in filtered_photos){
+            filtered_photos[photos[j].place_id].push(photos[j])
+        }
     }
     return filtered_photos;
 }

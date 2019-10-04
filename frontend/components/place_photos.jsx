@@ -69,7 +69,7 @@ class PlacePhotos extends React.Component {
                     user_id: self.state.user_id
                 }).then(() => {
                     self.setState({visible: "Sucessfully Uploaded Images", opacity: 1})
-                    setTimeout(function () { self.setState({visible: "", opacity: 0}) }, 5000);
+                    setTimeout(function () { self.setState({visible: "", opacity: 0}) }, 3000);
                 })
             },
             (err) => {

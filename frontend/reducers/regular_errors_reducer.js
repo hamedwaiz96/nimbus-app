@@ -1,5 +1,6 @@
 import {RECEIVE_ERRORS, RECEIVE_PLACE} from '../actions/place_actions';
 import {RECEIVE_REVIEW_ERRORS} from '../actions/review_actions';
+import {RECEIVE_USER_IMAGE_ERRORS} from '../actions/user_actions';
 import merge from 'lodash/merge';
 
 const regularErrorsReducer = (state = [], action) => {
@@ -13,7 +14,8 @@ const regularErrorsReducer = (state = [], action) => {
                 return [...action.err];
             }
         case(RECEIVE_REVIEW_ERRORS):
-            debugger;
+            return [...action.err.responseJSON]
+        case(RECEIVE_USER_IMAGE_ERRORS):
             return [...action.err.responseJSON]
         case(RECEIVE_PLACE):
             return [];
