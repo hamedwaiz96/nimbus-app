@@ -46,11 +46,27 @@ export const getReviewsForUser = (reviews, user_id) => {
         return new_reviews;
 }
 
-export const getPlacesForUser = (places, filtered_reviews) => {
+export const getReviewsObject = (reviews, places) => {
+    let filtered_reviews = {};
+    for (var i = 0; i <= places.length - 1; i++) {
+        filtered_reviews[places[i].id] = []
+    }
+    for (var j = 0; j <= reviews.length - 1; j++) {
+        filtered_reviews[reviews[j].place_id].push(reviews[j])
+    }
+    return filtered_reviews;
+}
+
+export const getPlacesForUser = (places, filtered_reviews, filtered_photos) => {
     let place_ids = [];
     let new_places = [];
     for (var i = 0; i <= filtered_reviews.length - 1; i++) {
         place_ids.push(filtered_reviews[i].place_id)
+    }
+    for (var k = 0; k <= filtered_photos.length - 1; k++){
+        if (!(place_ids.includes(filtered_photos[k].place_id))){
+            place_ids.push(filtered_photos[k].place_id)
+        }
     }
     for (var j in places) {
         if (place_ids.includes(places[j].id)) {
@@ -70,14 +86,13 @@ export const getPhotosForUser = (photos, id) => {
     return new_photos;
 }
 
-export const getPhotosFiltered = (photos, user_id, places) => {
-    let user_photos = getPhotosForUser(photos, user_id);
+export const getPhotosObject = (photos, places) => {
     let filtered_photos = {};
-    places.map((place) => {
-        filtered_photos[place.id] = []
-    });
-    user_photos.map((photo) => {
-        filtered_photos[photo.place_id].push(photo)
-    });
+    for (var i = 0; i <= places.length - 1; i++) {
+        filtered_photos[places[i].id] = []
+    }
+    for (var j = 0; j <= photos.length - 1; j++) {
+        filtered_photos[photos[j].place_id].push(photos[j])
+    }
     return filtered_photos;
 }

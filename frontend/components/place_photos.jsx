@@ -75,8 +75,11 @@ class PlacePhotos extends React.Component {
                 <p><Link to="/login">Login to Add Photo</Link></p>
             )
         }
-        return(
-            <div className='place-photos-container'>
+        let photo_container;
+        if(this.front_photos.length === 0){
+            photo_container = ""
+        } else {
+            photo_container = (
                 <div className="place-photos-block">
                     <div className="previous-container" onClick={this.previousPhoto}>
                         <span className="previous" >{"<"}</span>
@@ -90,6 +93,11 @@ class PlacePhotos extends React.Component {
                         <span className="next">{">"}</span>
                     </div>
                 </div>
+            )
+        }
+        return(
+            <div className='place-photos-container'>
+                {photo_container}
                 {show}
             </div>
         )

@@ -86,7 +86,6 @@ class UserShow extends React.Component {
             )
         } else {
             let pictureChange;
-            console.log(this.props);
             if(this.props.session_id === this.props.user.id) {
                 pictureChange = (
                     <div className="photo-change-form-container">
@@ -114,7 +113,7 @@ class UserShow extends React.Component {
                             <h1>{this.props.user.username}</h1>
                             <div className="user-show-side-details">
                                 <span className="fa fa-star review-count"> {this.props.user.review_count} reviews</span>
-                                <span className="fa fa-camera photo-count ">{this.props.user.photo_count} photos</span>
+                                <span className="fa fa-camera photo-count "> {this.props.user.photo_count} photos</span>
                             </div>
                             {pictureChange}
                         </div>
@@ -122,9 +121,9 @@ class UserShow extends React.Component {
                         <div className="user-reviews" >
                             <h1>Reviews</h1>
                             <ul className="user-show-review-list">
-                                {this.props.reviews.map((review) => {
+                                {this.props.places.map((place) => {
                                     return (
-                                        <UserReviews key={review.id} review={review} places={this.props.places} photos={this.props.photos} user={this.props.user} />
+                                        <UserReviews key={place.id} place={place} reviews={this.props.reviews[place.id]} photos={this.props.photos} user={this.props.user} />
                                     )
                                 })}
                             </ul>

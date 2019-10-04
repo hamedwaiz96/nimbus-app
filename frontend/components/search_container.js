@@ -5,7 +5,8 @@ import {getPlaces} from './selector';
 
 const mapStateToProps = (state) => ({
     places: getPlaces(state.entities.places),
-    loading: state.ui.loading.indexLoading
+    loading: state.ui.loading.indexLoading,
+    session: state.session.id
 });
 
 

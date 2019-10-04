@@ -28,6 +28,7 @@ class Search extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleregSubmit = this.handleregSubmit.bind(this);
         this.clearFilters = this.clearFilters.bind(this);
+        this.hideDetails = this.hideDetails.bind(this);
     }
 
     componentDidMount(){
@@ -100,6 +101,12 @@ class Search extends React.Component {
         })
     }
 
+    hideDetails(){
+        if((this.props.session !== null) && $('.logged-in-details-container')[0].style.display !== 'none'){
+            $('.logged-in-details-container').toggle();
+        }
+    }
+
     render(){
         let search;
         if (this.props.history.location.pathname != "/"){
@@ -127,6 +134,7 @@ class Search extends React.Component {
                     </div>
                     <GreetingContainer />
                     </header>
+                <div className="other" onClick={this.hideDetails}>
                     <Switch>
                         <Route exact path="/" render={(props) => (
                             <main className="filter-and-index">
@@ -140,54 +148,54 @@ class Search extends React.Component {
                                         <div className="filter-block container">
                                             <h4 className="filter-block-header">Category:</h4>
                                             <ul className="ks-cboxtags filter-list">
-                                            <li><input id="Temple" type="checkbox" name="tag" value="Temple" onChange={this.updatecheck('tags', "1")} /> <label htmlFor="Temple">Temple</label></li>
-                                            <li><input id="Food" type="checkbox" name="tag" value="Food" onChange={this.updatecheck('tags', "2")} /> <label htmlFor="Food">Food</label></li>
-                                            <li><input id="TV" type="checkbox" name="tag" value="TV" onChange={this.updatecheck('tags', "3")} /> <label htmlFor="TV">TV</label></li>
-                                            <li><input id="Nature" type="checkbox" name="tag" value="Nature" onChange={this.updatecheck('tags', "4")} /> <label htmlFor="Nature">Nature</label></li>
-                                            <li><input id="Technical" type="checkbox" name="tag" value="Technical" onChange={this.updatecheck('tags', "5")} /> <label htmlFor="Technical">Technical</label></li>
-                                            <li><input id="Park" type="checkbox" name="tag" value="Park" onChange={this.updatecheck('tags', "6")} /> <label htmlFor="Park">Park</label></li>
-                                            <li> <input id="Historical" type="checkbox" name="tag" value="Historical" onChange={this.updatecheck('tags', "7")} /> <label htmlFor="Historical">Historical</label></li>
+                                                <li><input id="Temple" type="checkbox" name="tag" value="Temple" onChange={this.updatecheck('tags', "1")} /> <label htmlFor="Temple">Temple</label></li>
+                                                <li><input id="Food" type="checkbox" name="tag" value="Food" onChange={this.updatecheck('tags', "2")} /> <label htmlFor="Food">Food</label></li>
+                                                <li><input id="TV" type="checkbox" name="tag" value="TV" onChange={this.updatecheck('tags', "3")} /> <label htmlFor="TV">TV</label></li>
+                                                <li><input id="Nature" type="checkbox" name="tag" value="Nature" onChange={this.updatecheck('tags', "4")} /> <label htmlFor="Nature">Nature</label></li>
+                                                <li><input id="Technical" type="checkbox" name="tag" value="Technical" onChange={this.updatecheck('tags', "5")} /> <label htmlFor="Technical">Technical</label></li>
+                                                <li><input id="Park" type="checkbox" name="tag" value="Park" onChange={this.updatecheck('tags', "6")} /> <label htmlFor="Park">Park</label></li>
+                                                <li> <input id="Historical" type="checkbox" name="tag" value="Historical" onChange={this.updatecheck('tags', "7")} /> <label htmlFor="Historical">Historical</label></li>
                                             </ul>
                                         </div>
-                                        <hr/>
+                                        <hr />
                                         <div className="filter-block container">
                                             <h4 className="filter-block-header">Location:</h4>
                                             <ul className="ks-cboxtags">
-                                            <li><input id="Central City" type="checkbox" name="location" value="Central City" onChange={this.updatecheck('location', 'Central City')} /> <label htmlFor="Central City">Central City</label></li>
-                                            <li><input id="East City" type="checkbox" name="location" value="East City" onChange={this.updatecheck('location', 'East City')} /> <label htmlFor="East City">East City</label></li>
-                                            <li><input id="Papaya Island" type="checkbox" name="location" value="Papaya Island" onChange={this.updatecheck('location', 'Papaya Island')} /> <label htmlFor="Papaya Island">Papaya Island</label></li>
-                                            <li><input id="West City" type="checkbox" name="location" value="West City" onChange={this.updatecheck('location', 'West City')} /> <label htmlFor="West City">West City</label></li>
+                                                <li><input id="Central City" type="checkbox" name="location" value="Central City" onChange={this.updatecheck('location', 'Central City')} /> <label htmlFor="Central City">Central City</label></li>
+                                                <li><input id="East City" type="checkbox" name="location" value="East City" onChange={this.updatecheck('location', 'East City')} /> <label htmlFor="East City">East City</label></li>
+                                                <li><input id="Papaya Island" type="checkbox" name="location" value="Papaya Island" onChange={this.updatecheck('location', 'Papaya Island')} /> <label htmlFor="Papaya Island">Papaya Island</label></li>
+                                                <li><input id="West City" type="checkbox" name="location" value="West City" onChange={this.updatecheck('location', 'West City')} /> <label htmlFor="West City">West City</label></li>
                                             </ul>
                                         </div>
-                                        <hr/>
+                                        <hr />
                                         <div className="filter-block container">
                                             <h4 className="filter-block-header">Price:</h4>
                                             <ul className="ks-cboxtags">
-                                            <li><input id="1" type="checkbox" name="price" value="1" onChange={this.updatecheck('price', '1')} /> <label htmlFor="1">1</label></li>
-                                            <li><input id="2" type="checkbox" name="price" value="2" onChange={this.updatecheck('price', '2')} /> <label htmlFor="2">2</label></li>
-                                            <li><input id="3" type="checkbox" name="price" value="3" onChange={this.updatecheck('price', '3')} /> <label htmlFor="3">3</label></li>
-                                            <li><input id="4" type="checkbox" name="price" value="4" onChange={this.updatecheck('price', '4')} /> <label htmlFor="4">4</label></li>
-                                            <li><input id="5" type="checkbox" name="price" value="5" onChange={this.updatecheck('price', '5')} /> <label htmlFor="5">5</label></li>
+                                                <li><input id="1" type="checkbox" name="price" value="1" onChange={this.updatecheck('price', '1')} /> <label htmlFor="1">1</label></li>
+                                                <li><input id="2" type="checkbox" name="price" value="2" onChange={this.updatecheck('price', '2')} /> <label htmlFor="2">2</label></li>
+                                                <li><input id="3" type="checkbox" name="price" value="3" onChange={this.updatecheck('price', '3')} /> <label htmlFor="3">3</label></li>
+                                                <li><input id="4" type="checkbox" name="price" value="4" onChange={this.updatecheck('price', '4')} /> <label htmlFor="4">4</label></li>
+                                                <li><input id="5" type="checkbox" name="price" value="5" onChange={this.updatecheck('price', '5')} /> <label htmlFor="5">5</label></li>
                                             </ul>
                                         </div>
-                                        <hr/>
+                                        <hr />
                                         <div className="filter-block container">
                                             <h4 className="filter-block-header">Rating:</h4>
                                             <ul className="ks-cboxtags">
-                                            <li><input id="1r" type="checkbox" name="rating" value="1" onChange={this.updatecheck('rating', '1')} /> <label htmlFor="1r">1</label></li>
-                                            <li><input id="2r" type="checkbox" name="rating" value="2" onChange={this.updatecheck('rating', '2')} /> <label htmlFor="2r">2</label></li>
-                                            <li><input id="3r" type="checkbox" name="rating" value="3" onChange={this.updatecheck('rating', '3')} /> <label htmlFor="3r">3</label></li>
-                                            <li><input id="4r" type="checkbox" name="rating" value="4" onChange={this.updatecheck('rating', '4')} /> <label htmlFor="4r">4</label></li>
-                                            <li><input id="5r" type="checkbox" name="rating" value="5" onChange={this.updatecheck('rating', '5')} /> <label htmlFor="5r">5</label></li>
+                                                <li><input id="1r" type="checkbox" name="rating" value="1" onChange={this.updatecheck('rating', '1')} /> <label htmlFor="1r">1</label></li>
+                                                <li><input id="2r" type="checkbox" name="rating" value="2" onChange={this.updatecheck('rating', '2')} /> <label htmlFor="2r">2</label></li>
+                                                <li><input id="3r" type="checkbox" name="rating" value="3" onChange={this.updatecheck('rating', '3')} /> <label htmlFor="3r">3</label></li>
+                                                <li><input id="4r" type="checkbox" name="rating" value="4" onChange={this.updatecheck('rating', '4')} /> <label htmlFor="4r">4</label></li>
+                                                <li><input id="5r" type="checkbox" name="rating" value="5" onChange={this.updatecheck('rating', '5')} /> <label htmlFor="5r">5</label></li>
                                             </ul>
                                         </div>
-                                        <hr/>
-                                    <button className="clear-filters" onClick={this.clearFilters}>Clear Filters</button>
+                                        <hr />
+                                        <button className="clear-filters" onClick={this.clearFilters}>Clear Filters</button>
                                     </div>
                                 </section>
                                 <PlaceIndex places={this.props.places} loading={this.props.loading} />
                             </main>
-                        )}/>
+                        )} />
                         <ProtectedRoute exact path="/places/new" component={PlaceFormContainer} />
                         <Route path="/places/:id" component={PlaceShowContainer} />
                         <Route path="/users/:id" component={UserShowContainer} />
@@ -196,6 +204,8 @@ class Search extends React.Component {
                         <AuthRoute path="/signup" component={SignupFormContainer} />
                         <ProtectedRoute path="/photos/new/:id" component={PhotoFormContainer} />
                     </Switch>
+                    </div>
+                    
                 </div>
         )
     }

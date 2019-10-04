@@ -101,9 +101,12 @@ body {
     display: block;
     width: 100%;
     padding-right: 40%;
-    border-radius: 5px;
     padding-top: 8px;
     padding-bottom: 8px;
+    border-radius: 5px 0px 0px 5px;
+    border-width: 0px;
+    border-left: 1px solid lightgrey;
+    padding-left: 5px;
 }
 
  .filter-and-index, .place-show {
@@ -157,6 +160,130 @@ body {
      display: flex;
      justify-content: space-around;
      margin: 0 5px;
+ }
+
+ .logged-in {
+     justify-content: center;
+    align-items: center;
+    height: 50px;
+    position: relative;
+ }
+
+ .logged-in > button {
+    height: 75%;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 0px;
+    background: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+ }
+
+ .details-arrow {
+     height:5px;
+     display: block;
+     border-bottom: solid 10px #FFF;
+     border-left: solid 5px transparent;
+     border-right: solid 5px transparent;
+     display: block;
+     position: absolute;
+     background: transparent;
+     width: 0;
+    height: 0;
+    top: -10px;
+    right: 10px;
+ }
+
+ .logged-in > button > img {
+     padding: 0px 3px;
+ }
+
+ .logged-in > button > span {
+     display: flex;
+     align-items: center;
+    height: 38px;
+    padding: 0px 5px;
+    border-radius: 0px 5px 5px 0px;
+    color: white;
+    background: purple;
+ }
+
+ .logged-in > button:hover {
+     cursor: pointer;
+ }
+
+ .logged-in-details {
+     background: white;
+     position: relative;
+     width: 150px;
+     border-radius: 5px 5px;
+}
+
+ .logged-in-details-user {
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     border: 1px solid lightgrey;
+     border-radius: 5px 5px;
+     padding: 5px 0;
+ }
+
+ .logged-in-details-container {
+     display: none;
+     position: absolute;
+     top: 55px;
+     right: 0px;
+}
+
+.logged-in-details-list > li {
+    font-family: 'Roboto', sans-serif;
+    padding: 5px 0;
+    border: 1px solid lightgrey;
+    border-radius: 5px 5px;
+}
+
+.logged-in-details-list > li:hover {
+    cursor: pointer;
+}
+
+.logged-in-details-list {
+    background: white;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.logged-in-details-show {
+    overflow-wrap: break-word;
+}
+
+.logged-in-details-show > p {
+    margin: 0;
+    font-size: 14px;
+}
+
+ .logged-in > p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+ }
+
+ .logged-in-username {
+     text-decoration: none;
+ }
+
+ .logged-in-username:active {
+    text-decoration: none;
+ }
+
+ .logged-in-username:hover {
+     text-decoration: underline;
  }
 
  .nimbus {
@@ -385,6 +512,7 @@ body {
 
 .place-show-review-container {
     width: 250px;
+    display: inline-block;
 }
 
 .rating-date-number {
@@ -421,6 +549,7 @@ body {
 .place-photos-container {
     text-align: center;
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .photos-user {
@@ -551,11 +680,27 @@ hr {
 
 .user-reviews-show-list-item {
     border-bottom: 1px solid lightgrey;
-    padding-top: 10px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .user-reviews-show-list-item:last-of-type {
     border: none;
+}
+
+.user-reviews-details-list {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    height: 130px;
+    overflow: scroll;
+    text-align: center;
+    width: 250px;
+}
+
+.user-reviews-details-container {
+    width: 380px;
 }
 
 .user-show-container {
@@ -728,6 +873,10 @@ hr {
     border-radius: 5px 5px;
 }
 
+.photo-create {
+    margin: 5px 0;
+}
+
 .place-show-details {
     margin: auto;
     width: 75%;
@@ -776,6 +925,25 @@ hr {
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
     text-align: center;
+}
+
+.fa-search {
+    border-radius: 0px 5px 5px 0px;
+    border: 1px;
+    cursor: pointer;
+    border-left: 1px solid lightgrey;
+    outline: none !important;
+}
+
+.fa-search:hover {
+    background: pink;
+    color: white;
+}
+
+.fa-search:active {
+    background: purple;
+    color: white;
+    outline: none !important;
 }
 
 .black-bar:hover {
@@ -859,4 +1027,5 @@ hr {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    outline: none !important;
 }
