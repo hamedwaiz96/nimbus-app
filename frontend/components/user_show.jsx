@@ -11,12 +11,11 @@ class UserShow extends React.Component {
         this.state = {
             isLoading: true,
             toggleValue: "Change Profile Picture",
-            user_image: this.props.user.image,
             visible: "",
             opacity: 0
         }
         this.props.fetchUser(this.props.user_id).then(() => {
-            this.setState({isLoading: false})
+            this.setState({ isLoading: false })
         })
         this.file = "";
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +49,7 @@ class UserShow extends React.Component {
         }).then(
             (res) => {
                 self.props.updateUserPhoto(self.props.user_id, res.data.secure_url).then((user) => {
-                    self.setState({ visible: "Sucessfully Uploaded Images", opacity: 1, user_image: res.data.secure_url })
+                    self.setState({ visible: "Sucessfully Uploaded Images", opacity: 1 })
                     setTimeout(function () { self.setState({ visible: "", opacity: 0 }) }, 3000);
                 })
             },
@@ -106,7 +105,7 @@ class UserShow extends React.Component {
                         </div>
                     </div>
                     <div className="user-show-container">
-                        <img className="user-show-photo" src={this.state.user_image} alt="User Profile Picture" height="200" width="200" />
+                        <img className="user-show-photo" src={this.props.user.image} alt="User Profile Picture" height="200" width="200" />
                         <div className="user-show-side">
                             <h1>{this.props.user.username}</h1>
                             <div className="user-show-side-details">
