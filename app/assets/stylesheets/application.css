@@ -112,6 +112,7 @@ body {
  .filter-and-index, .place-show {
      /* width: 50%; */
      margin: auto;
+     margin-top: 18px;
      min-width: 550px;
      background: white;
      border-radius: 5px 5px;
@@ -572,7 +573,6 @@ body {
     align-items: center;
     justify-content: space-around;
     padding: 2px 0;
-    border:1px solid grey;
 }
 
 .place-photos-container {
@@ -596,7 +596,11 @@ body {
 .place-photo-item-container {
     /* width: 25%; */
     height: 100px;
-    margin: 0 10px;
+    margin-right: 10px;
+}
+
+.place-photo-item-container:first-of-type {
+    margin-left: 10px;
 }
 
 .photo-form > input {
@@ -613,7 +617,6 @@ body {
 
 
 .place-photo-item {
-    border-radius: 5px;
     width: 100px;
     height: 100px;
 }
@@ -629,7 +632,7 @@ body {
 }
 
 .previous-container, .next-container {
-    width: 16%;
+    width: 5%;
     height: 106px;
     background: grey;
     text-align: center;

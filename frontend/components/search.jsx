@@ -126,7 +126,7 @@ class Search extends React.Component {
         }
         return(
                 <div className="full">
-                    <header className="search">
+                    <header className="search card-3">
                     <Link className="nimbus" to="/"><img src="https://res.cloudinary.com/nimbus-app/image/upload/v1570232579/nimbus/Nimbus-logo-black_1_kczzzz.png" alt="Nimbus Cloud with Nimbus text underneath" height="62.44" width="70" /></Link>
                     <div className="search-inside">
                         {search}
